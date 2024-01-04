@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  api:
+    build:
+      context: ./packages/pension-reservation-api
+      dockerfile: Dockerfile
+    command: air -c .air.toml
+    hostname: pension-reservation-api
+    volumes:
+      - ./packages/pension-reservation-api:/app
+    ports:
+      - 1234:1234

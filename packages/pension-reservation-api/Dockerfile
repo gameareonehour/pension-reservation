@@ -1,0 +1,19 @@
+FROM golang:1.21.1-alpine
+
+RUN apk upgrade --update && \
+    apk --no-cache add tzdata git gcc libc-dev && \
+    cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+ENV TZ=Asia/Tokyo
+
+RUN cd /tmp && \
+    go install github.com/cosmtrek/air@v1.45.0 && \
+    go install github.com/rakyll/gotest@latest
+
+WORKDIR /app
+
+COPY go.mod go.sum ./
+
+RUN go mod download
+
+CMD ["sh"]
