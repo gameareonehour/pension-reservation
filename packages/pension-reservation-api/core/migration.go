@@ -1,4 +1,4 @@
-package database
+package core
 
 import (
 	"gorm.io/gorm"
@@ -17,6 +17,6 @@ func Migrate(db *gorm.DB) error {
 	return nil
 }
 
-func Drop(db *gorm.DB) error {
+func DropTables(db *gorm.DB) error {
 	return db.Migrator().DropTable()
 }

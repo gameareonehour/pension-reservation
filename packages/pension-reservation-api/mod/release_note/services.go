@@ -10,6 +10,6 @@ func NewGetLatestReleaseNotesService(query GetLatestReleaseNotesQuery) *GetLates
 	}
 }
 
-func (h *GetLatestReleaseNotesService) GetLatestReleaseNotes() queryResult {
+func (h *GetLatestReleaseNotesService) GetLatestReleaseNotes() *GetLatestReleaseNotesQueryResult {
 	return h.query.Run()
 }

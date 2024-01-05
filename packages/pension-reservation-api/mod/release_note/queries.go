@@ -1,16 +1,16 @@
 package release_note
 
 type GetLatestReleaseNotesQuery interface {
-	Run() queryResult
+	Run() *GetLatestReleaseNotesQueryResult
 }
 
-type queryResult interface {
-	Items() []*queryResultElement
+type GetLatestReleaseNotesQueryResult struct {
+	Items []*GetLatestReleaseNotesQueryResultElement
 }
 
-type queryResultElement interface {
-	ID() int
-	Content() int
-	CreatedAt() string
-	UpdatedAt() string
+type GetLatestReleaseNotesQueryResultElement struct {
+	ID int
+	Content int
+	CreatedAt string
+	UpdatedAt string
 }

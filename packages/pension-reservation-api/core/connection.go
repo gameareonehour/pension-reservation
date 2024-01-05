@@ -1,8 +1,8 @@
-package database
+package core
 
 import (
 	"fmt"
-	"pension-reservation-api/infra/env"
+	"pension-reservation-api/pkg/env"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
