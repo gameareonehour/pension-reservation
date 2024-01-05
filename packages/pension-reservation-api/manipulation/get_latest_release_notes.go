@@ -1,4 +1,4 @@
-package dao
+package manipulation
 
 import (
 	"pension-reservation-api/mod/release_note"
