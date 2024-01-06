@@ -2,7 +2,7 @@ package database
 
 import (
 	"fmt"
-	"pension-reservation-api/pkg/env"
+	"pension-reservation-api/core/env"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"

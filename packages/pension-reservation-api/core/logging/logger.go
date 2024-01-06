@@ -6,26 +6,26 @@ import (
 	"log"
 )
 
-type AppLogger struct {
+type Logger struct {
 	logger *log.Logger
 }
 
-func NewLogger(f io.Writer) *AppLogger {
+func NewLogger(f io.Writer) *Logger {
 	logger := log.New(f, "", log.LstdFlags|log.Ldate|log.Llongfile)
 
-	return &AppLogger{
+	return &Logger{
 		logger: logger,
 	}
 }
 
-func (l *AppLogger) Print(message string) {
+func (l *Logger) Print(message string) {
 	l.logger.Println(message)
 }
 
-func (l *AppLogger) Printf(format string, v ...interface{}) {
+func (l *Logger) Printf(format string, v ...interface{}) {
 	l.logger.Printf(fmt.Sprintf(format, v...))
 }
 
-func (l *AppLogger) Error(err error) {
+func (l *Logger) Error(err error) {
 	l.logger.Printf("%+v\n", err)
 }

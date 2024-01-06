@@ -1,15 +1,19 @@
 package release_note
 
 import (
-	"net/http"
+	"encoding/json"
 
-	"github.com/labstack/echo/v4"
+	"github.com/gofiber/fiber/v2"
 )
 
-func GetLatestReleaseNotes(handler *GetLatestReleaseNotesService) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		response := handler.GetLatestReleaseNotes()
+func GetLatestReleaseNotes(service *GetLatestReleaseNotesService) fiber.Handler {
+	return func(ctx *fiber.Ctx) error {
+		response := service.GetLatestReleaseNotes()
+		r, err := json.Marshal(response)
+		if err != nil {
+			panic(err)
+		}
 
-		return c.JSON(http.StatusOK, response)
+		return ctx.JSON(r)
 	}
 }
