@@ -1,6 +1,10 @@
 package api
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/gofiber/fiber/v2/middleware/recover"
+)
 
 // API responsible to deliver communication of
 // application and client via http transport.
@@ -15,6 +19,9 @@ func NewApi() *API {
 	}
 
 	api := fiber.New(conf)
+	api.Use(recover.New())
+	api.Use(logger.New())
+
 	router := api.Group("/api").Group("/v1")
 	return &API{core: api, router: router}
 }

@@ -7,11 +7,7 @@ import (
 func HandleGetLatestReleaseNotes(service *GetLatestReleaseNotesService) fiber.Handler {
 	return func(ctx *fiber.Ctx) error {
 		response := service.GetLatestReleaseNotes()
-		// r, err := json.Marshal(response)
-		// if err != nil {
-		// 	panic(err)
-		// }
 
-		return ctx.JSON(response)
+		return ctx.Status(fiber.StatusOK).JSON(response)
 	}
 }

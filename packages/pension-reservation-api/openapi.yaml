@@ -1,0 +1,134 @@
+openapi: 3.1.0
+x-stoplight:
+  id: hofrdkpa7nd57
+info:
+  title: pension-reservation
+  version: '1.0'
+  contact:
+    name: ゲームは一日一時間だよ
+    email: gameare.onehour@gmail.com
+    url: 'https://sizu.me/gameareonehour'
+  license:
+    name: Proprietary License
+    url: 'https://example.com/my-api-license'
+  description: ペンション予約サイトに必要なAPIを提供します
+servers:
+  - url: 'http://localhost:8080'
+paths:
+  /release-notes:
+    get:
+      summary: 最新リリースノート取得API
+      tags:
+        - release-notes
+      responses:
+        '200':
+          $ref: '#/components/responses/GetReleaseNotesResponse'
+      operationId: get-release-notes
+      x-stoplight:
+        id: avr4y22750gsx
+      x-internal: true
+      description: データベースに登録されているリリースノートのうち、新しく登録されたものを3件返す
+  /vacancy-rooms/search:
+    parameters: []
+    post:
+      summary: 空室検索API
+      operationId: post-vacancy-rooms-search
+      responses:
+        '200':
+          $ref: '#/components/responses/PostVacancyRoomsSearchResponse'
+      x-stoplight:
+        id: pe8mfpsoxqnoh
+      description: 指定された日付にて、予約が行われていない部屋の一覧を返す
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reservation_date:
+                  type: string
+                  x-stoplight:
+                    id: me2x4wqwxhskq
+      tags:
+        - reservation
+components:
+  schemas: {}
+  responses:
+    GetReleaseNotesResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                items:
+                  - id: 0
+                    text: string
+                    created_at: string
+                    updated_at: string
+            properties:
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    text:
+                      type: string
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+                  required:
+                    - id
+                    - text
+                    - created_at
+                    - updated_at
+            required:
+              - items
+    PostVacancyRoomsSearchResponse:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                items:
+                  - id: 0
+                    name: string
+                    type: string
+                    dayfee: 0
+                    image_url: string
+            properties:
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    type:
+                      type: string
+                    dayfee:
+                      type: integer
+                    image_url:
+                      type: string
+                  required:
+                    - id
+                    - name
+                    - type
+                    - dayfee
+                    - image_url
+            required:
+              - items
+x-internal: true
+tags:
+  - name: release-notes
+    description: リリースノート コンテキスト
+  - name: reservation
+    description: 予約 コンテキスト
