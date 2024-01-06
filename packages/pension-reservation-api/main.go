@@ -7,50 +7,61 @@ import (
 	"pension-reservation-api/core"
 	"pension-reservation-api/manipulation"
 	"pension-reservation-api/mod/release_note"
+	"pension-reservation-api/openapi/generated"
+	"pension-reservation-api/openapi/server"
 	"syscall"
 
+	"github.com/pkg/errors"
 	"github.com/samber/do"
 	"gorm.io/gorm"
 )
 
+const port = ":8080"
+
 func main() {
-	port := ":8080"
+	logger := core.NewLogger(os.Stdout)
 
 	db, err := core.ConnectToDatabase()
 	if err != nil {
-		panic(err)
+		logger.Error(errors.WithStack(err))
+		os.Exit(1)
 	}
 
-	a := core.NewApi()
-	logger := core.NewLogger(os.Stdout)
 	injector := do.New()
 
-	provide(db, injector)
+	provide(db, injector, logger)
 
-	go func() { _ = a.GetCore().Listen(port) }()
+	api := core.NewAPI(logger)
+	srv := server.New(injector)
+
+	generated.RegisterHandlers(api.Router(), srv)
+
+	go func() { _ = api.Instance().Listen(port) }()
 
 	var sig os.Signal
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
-	sig = <-c 
+	sig = <-c
 
-	logger.Printf("Signal received: %s",sig.String())
+	logger.Printf("Signal received: %s", sig.String())
 	logger.Printf("Shutting down app, waiting background process to finish")
 
-	_ = a.GetCore().ShutdownWithContext(context.Background())
+	_ = api.Instance().ShutdownWithContext(context.Background())
 }
 
-func provide(db *gorm.DB, injector *do.Injector) {
+func provide(db *gorm.DB, injector *do.Injector, logger *core.Logger) {
+	// provide service instances.
 	do.Provide(injector, func(i *do.Injector) (*release_note.GetLatestReleaseNotesService, error) {
 		m := manipulation.NewGetLatestReleaseNotes(db)
 		svc := release_note.NewGetLatestReleaseNotesService(m)
 
 		return svc, nil
 	})
-}
 
-func apiRoute(injector *do.Injector, logger *core.Logger) {
-	// releaseNoteController := release_note.NewReleaseNoteController(injector, logger)
+	// provide controller instances.
+	do.Provide(injector, func(i *do.Injector) (*release_note.Controller, error) {
+		controller := release_note.NewController()
 
-	// type si struct {}
+		return controller, nil
+	})
 }

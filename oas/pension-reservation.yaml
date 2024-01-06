@@ -6,14 +6,14 @@ info:
   version: '1.0'
   contact:
     name: ゲームは一日一時間だよ
-    email: example@example.jp
-    url: 'https://example.com'
+    email: 'https://example.com'
+    url: example@example.jp
   license:
     name: Proprietary License
     url: 'https://example.com/my-api-license'
   description: ペンション予約サイトに必要なAPIを提供します
 servers:
-  - url: 'http://localhost:8080'
+  - url: 'http://localhost:8080/api/v1'
 paths:
   /release-notes:
     get:

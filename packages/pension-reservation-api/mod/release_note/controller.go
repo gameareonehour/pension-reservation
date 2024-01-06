@@ -1,31 +1,25 @@
 package release_note
 
 import (
-	"pension-reservation-api/core"
 	"pension-reservation-api/openapi/generated"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/samber/do"
 )
 
-type controller struct {
-	injector *do.Injector
-	logger   *core.Logger
+type Controller struct {}
+
+func NewController() *Controller {
+	return &Controller{}
 }
 
-func NewReleaseNoteController(injector *do.Injector, logger *core.Logger) *controller {
-	return &controller{
-		injector: injector,
-		logger: logger,
-	}
-}
-
-func (c *controller) GetLatestReleaseNotes() fiber.Handler {
+func (c *Controller) GetLatestReleaseNotes(service *GetLatestReleaseNotesService) fiber.Handler {
 	return func(ctx *fiber.Ctx) error {
-		service := do.MustInvoke[*GetLatestReleaseNotesService](c.injector)
 		response := generated.GetReleaseNotesResponse{}
 
-		notes := service.GetLatestReleaseNotes()
+		notes, err := service.GetLatestReleaseNotes()
+		if err != nil {
+			return err
+		}
 
 		for _, v := range notes {
 			response.Items = append(response.Items, GetReleaseNotesResponseItem{

@@ -1,7 +1,7 @@
 package release_note
 
 type GetLatestReleaseNotesQuery interface {
-	Run() GetLatestReleaseNotesQueryResult
+	Run() (GetLatestReleaseNotesQueryResult, error)
 }
 
 type GetLatestReleaseNotesQueryResult []GetLatestReleaseNotesQueryResultInner

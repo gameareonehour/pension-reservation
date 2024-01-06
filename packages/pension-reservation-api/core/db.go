@@ -2,6 +2,7 @@ package core
 
 import (
 	"fmt"
+	"pension-reservation-api/model"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -53,3 +54,25 @@ func ConnectToDatabase() (*gorm.DB, error) {
 
 	return db, nil
 }
+
+func Migrate(db *gorm.DB) error {
+	models := []interface{}{
+		&model.ReleaseNote{},
+	}
+
+	for _, m := range models {
+		err := db.AutoMigrate(m)
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func DropTables(db *gorm.DB) error {
+	return db.Migrator().DropTable(
+		&model.ReleaseNote{},
+	)
+}
+

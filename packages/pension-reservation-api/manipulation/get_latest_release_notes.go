@@ -2,7 +2,10 @@ package manipulation
 
 import (
 	"pension-reservation-api/mod/release_note"
+	"pension-reservation-api/model"
+	"time"
 
+	"github.com/pkg/errors"
 	"gorm.io/gorm"
 )
 
@@ -18,13 +21,24 @@ func NewGetLatestReleaseNotes(db *gorm.DB) *GetLatestReleaseNotes {
 	}
 }
 
-func (m *GetLatestReleaseNotes) Run() release_note.GetLatestReleaseNotesQueryResult {
-	return release_note.GetLatestReleaseNotesQueryResult{
-		{
-			ID:        0,
-			Text:      "aaaa",
-			CreatedAt: "aaa",
-			UpdatedAt: "aaa",
-		},
+func (m *GetLatestReleaseNotes) Run() (release_note.GetLatestReleaseNotesQueryResult, error) {
+	rs := []*model.ReleaseNote{}
+	limit := 3
+	queryResult := release_note.GetLatestReleaseNotesQueryResult{}
+
+	err := m.db.Model(&model.ReleaseNote{}).Limit(limit).Find(&rs).Error
+	if err != nil {
+		return nil, errors.WithStack(err)
 	}
+
+	for _, r := range rs {
+		queryResult = append(queryResult, release_note.GetLatestReleaseNotesQueryResultInner{
+			ID: int(r.ID),
+			Text: r.Text,
+			CreatedAt: r.CreatedAt.Format(time.RFC3339),
+			UpdatedAt: r.UpdatedAt.Format(time.RFC3339),
+		})
+	}
+
+	return queryResult, nil
 }
