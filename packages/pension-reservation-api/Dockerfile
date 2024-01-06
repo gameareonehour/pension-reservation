@@ -1,4 +1,4 @@
-FROM golang:1.21.1-alpine
+FROM golang:1.21.4-alpine
 
 RUN apk upgrade --update && \
     apk --no-cache add tzdata git gcc libc-dev && \

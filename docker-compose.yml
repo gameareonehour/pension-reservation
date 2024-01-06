@@ -11,3 +11,32 @@ services:
       - ./packages/pension-reservation-api:/app
     ports:
       - 1234:1234
+    environment:
+      DB_USERNAME: root
+      DB_PASSWORD: password
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: pension_reservation
+      ALLOW_ORIGINS: '["http://localhost:3000"]'
+  db:
+    platform: linux/x86_64
+    build:
+      context: ./
+      dockerfile: db.Dockerfile
+    hostname: db
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    volumes:
+      - 9f5b98c6dc0ecf05af2ccb22:/var/lib/mysql
+      - 239cebde603773095c054bba:/var/run/mysqld
+      - ./dbaccess.cnf:/dbaccess.cnf
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: pension_reservation
+      MYSQL_ROOT_PASSWORD: password
+
+volumes:
+  # database data
+  9f5b98c6dc0ecf05af2ccb22:
+  # database socket
+  239cebde603773095c054bba:

@@ -13,7 +13,7 @@ type GetLatestReleaseNotes struct {
 var _ release_note.GetLatestReleaseNotesQuery = (*GetLatestReleaseNotes)(nil)
 
 func NewGetLatestReleaseNotes(db *gorm.DB) *GetLatestReleaseNotes {
-	return &GetLatestReleaseNotes {
+	return &GetLatestReleaseNotes{
 		db: db,
 	}
 }

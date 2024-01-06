@@ -15,7 +15,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	err = database.Migrate(db)
+	err = database.Seed(db)
 	if err != nil {
 		logger.Error(err)
 		os.Exit(1)
