@@ -7,13 +7,13 @@ import (
 )
 
 type API struct {
-	instance   *fiber.App
-	router fiber.Router
+	instance *fiber.App
+	router   fiber.Router
 }
 
 func NewAPI(l *Logger) *API {
 	conf := fiber.Config{
-		AppName: "pension-reservation",
+		AppName:      "pension-reservation",
 		ErrorHandler: onException(l),
 	}
 
@@ -35,7 +35,7 @@ func (r *API) Router() fiber.Router {
 	return r.router
 }
 
-func onException(l *Logger) func (ctx *fiber.Ctx, err error) error {
+func onException(l *Logger) func(ctx *fiber.Ctx, err error) error {
 	return func(ctx *fiber.Ctx, err error) error {
 		l.Error(err)
 		return ctx.Status(fiber.StatusInternalServerError).SendString("An error has occurred.")

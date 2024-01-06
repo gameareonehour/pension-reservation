@@ -75,4 +75,3 @@ func DropTables(db *gorm.DB) error {
 		&model.ReleaseNote{},
 	)
 }
-

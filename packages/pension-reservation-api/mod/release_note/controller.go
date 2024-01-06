@@ -6,7 +6,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-type Controller struct {}
+type Controller struct{}
 
 func NewController() *Controller {
 	return &Controller{}
@@ -23,8 +23,8 @@ func (c *Controller) GetLatestReleaseNotes(service *GetLatestReleaseNotesService
 
 		for _, v := range notes {
 			response.Items = append(response.Items, GetReleaseNotesResponseItem{
-				Id: v.ID,
-				Text: v.Text,
+				Id:        v.ID,
+				Text:      v.Text,
 				CreatedAt: v.CreatedAt,
 				UpdatedAt: v.UpdatedAt,
 			})

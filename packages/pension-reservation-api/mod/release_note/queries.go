@@ -7,7 +7,7 @@ type GetLatestReleaseNotesQuery interface {
 type GetLatestReleaseNotesQueryResult []GetLatestReleaseNotesQueryResultInner
 
 type GetLatestReleaseNotesQueryResultInner struct {
-	ID        int   
+	ID        int
 	Text      string
 	CreatedAt string
 	UpdatedAt string
