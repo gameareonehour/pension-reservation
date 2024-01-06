@@ -1,15 +1,13 @@
 package release_note
 
 type GetLatestReleaseNotesQuery interface {
-	Run() *GetLatestReleaseNotesQueryResult
+	Run() GetLatestReleaseNotesQueryResult
 }
 
-type GetLatestReleaseNotesQueryResult struct {
-	Items []*GetLatestReleaseNotesQueryResultElement
-}
+type GetLatestReleaseNotesQueryResult []GetLatestReleaseNotesQueryResultInner
 
-type GetLatestReleaseNotesQueryResultElement struct {
-	ID        int    
+type GetLatestReleaseNotesQueryResultInner struct {
+	ID        int   
 	Text      string
 	CreatedAt string
 	UpdatedAt string

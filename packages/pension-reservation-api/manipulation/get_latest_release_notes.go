@@ -18,15 +18,13 @@ func NewGetLatestReleaseNotes(db *gorm.DB) *GetLatestReleaseNotes {
 	}
 }
 
-func (m *GetLatestReleaseNotes) Run() *release_note.GetLatestReleaseNotesQueryResult {
-	return &release_note.GetLatestReleaseNotesQueryResult{
-		Items: []*release_note.GetLatestReleaseNotesQueryResultElement{
-			{
-				ID:        0,
-				Text:      "aaaa",
-				CreatedAt: "aaa",
-				UpdatedAt: "aaa",
-			},
+func (m *GetLatestReleaseNotes) Run() release_note.GetLatestReleaseNotesQueryResult {
+	return release_note.GetLatestReleaseNotesQueryResult{
+		{
+			ID:        0,
+			Text:      "aaaa",
+			CreatedAt: "aaa",
+			UpdatedAt: "aaa",
 		},
 	}
 }

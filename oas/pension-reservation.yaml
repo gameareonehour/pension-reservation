@@ -6,8 +6,8 @@ info:
   version: '1.0'
   contact:
     name: ゲームは一日一時間だよ
-    email: gameare.onehour@gmail.com
-    url: 'https://sizu.me/gameareonehour'
+    email: example@example.jp
+    url: 'https://example.com'
   license:
     name: Proprietary License
     url: 'https://example.com/my-api-license'

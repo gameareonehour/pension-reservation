@@ -8,7 +8,8 @@ ENV TZ=Asia/Tokyo
 
 RUN cd /tmp && \
     go install github.com/cosmtrek/air@v1.45.0 && \
-    go install github.com/rakyll/gotest@latest
+    go install github.com/rakyll/gotest@latest && \
+    go install github.com/deepmap/oapi-codegen/cmd/oapi-codegen@latest
 
 WORKDIR /app
 

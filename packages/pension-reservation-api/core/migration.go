@@ -1,7 +1,7 @@
-package database
+package core
 
 import (
-	"pension-reservation-api/core/model"
+	"pension-reservation-api/model"
 
 	"gorm.io/gorm"
 )

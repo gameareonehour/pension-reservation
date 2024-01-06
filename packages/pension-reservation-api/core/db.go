@@ -1,8 +1,7 @@
-package database
+package core
 
 import (
 	"fmt"
-	"pension-reservation-api/core/env"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -10,27 +9,27 @@ import (
 )
 
 func ConnectToDatabase() (*gorm.DB, error) {
-	username, err := env.Env("DB_USERNAME")
+	username, err := Env("DB_USERNAME")
 	if err != nil {
 		return nil, err
 	}
 
-	password, err := env.Env("DB_PASSWORD")
+	password, err := Env("DB_PASSWORD")
 	if err != nil {
 		return nil, err
 	}
 
-	host, err := env.Env("DB_HOST")
+	host, err := Env("DB_HOST")
 	if err != nil {
 		return nil, err
 	}
 
-	port, err := env.Env("DB_PORT")
+	port, err := Env("DB_PORT")
 	if err != nil {
 		return nil, err
 	}
 
-	dbname, err := env.Env("DB_NAME")
+	dbname, err := Env("DB_NAME")
 	if err != nil {
 		return nil, err
 	}

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -eu
+
+cd "$(dirname "$(cd "$(dirname "${BASH_SOURCE:-$0}")" && pwd)")"
+
+./scripts/attach-api sh -c 'oapi-codegen -generate 'types,fiber' -package=generated /oas/pension-reservation.yaml > openapi/generated/oapigen.go'

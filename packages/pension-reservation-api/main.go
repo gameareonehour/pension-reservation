@@ -4,39 +4,30 @@ import (
 	"context"
 	"os"
 	"os/signal"
-	"pension-reservation-api/core/api"
-	"pension-reservation-api/core/database"
-	"pension-reservation-api/core/logging"
+	"pension-reservation-api/core"
 	"pension-reservation-api/manipulation"
 	"pension-reservation-api/mod/release_note"
 	"syscall"
 
 	"github.com/samber/do"
+	"gorm.io/gorm"
 )
-
-var logger = logging.NewLogger(os.Stdout)
 
 func main() {
 	port := ":8080"
 
-	db, err := database.ConnectToDatabase()
+	db, err := core.ConnectToDatabase()
 	if err != nil {
 		panic(err)
 	}
 
-	api := api.NewApi()
+	a := core.NewApi()
+	logger := core.NewLogger(os.Stdout)
 	injector := do.New()
 
-	do.Provide(injector, func(i *do.Injector) (*release_note.GetLatestReleaseNotesService, error) {
-		m := manipulation.NewGetLatestReleaseNotes(db)
-		svc := release_note.NewGetLatestReleaseNotesService(m)
+	provide(db, injector)
 
-		return svc, nil
-	})
-
-	release_note.NewRouter(injector, api, logger).Serve()
-
-	go func() { _ = api.GetCore().Listen(port) }()
+	go func() { _ = a.GetCore().Listen(port) }()
 
 	var sig os.Signal
 	c := make(chan os.Signal, 1)
@@ -46,5 +37,20 @@ func main() {
 	logger.Printf("Signal received: %s",sig.String())
 	logger.Printf("Shutting down app, waiting background process to finish")
 
-	_ = api.GetCore().ShutdownWithContext(context.Background())
+	_ = a.GetCore().ShutdownWithContext(context.Background())
+}
+
+func provide(db *gorm.DB, injector *do.Injector) {
+	do.Provide(injector, func(i *do.Injector) (*release_note.GetLatestReleaseNotesService, error) {
+		m := manipulation.NewGetLatestReleaseNotes(db)
+		svc := release_note.NewGetLatestReleaseNotesService(m)
+
+		return svc, nil
+	})
+}
+
+func apiRoute(injector *do.Injector, logger *core.Logger) {
+	// releaseNoteController := release_note.NewReleaseNoteController(injector, logger)
+
+	// type si struct {}
 }
