@@ -2,8 +2,8 @@ package main
 
 import (
 	"os"
+	"pension-reservation-api/core/database"
 	"pension-reservation-api/core/logging"
-	"pension-reservation-api/database"
 )
 
 func main() {

@@ -11,8 +11,7 @@ type API struct {
 
 func NewApi() *API {
 	conf := fiber.Config{
-		AppName:               "pension-reservation",
-		DisableStartupMessage: true,
+		AppName: "pension-reservation",
 	}
 
 	api := fiber.New(conf)
