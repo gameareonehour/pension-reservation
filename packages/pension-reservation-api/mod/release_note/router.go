@@ -3,35 +3,33 @@ package release_note
 import (
 	"pension-reservation-api/core/api"
 	"pension-reservation-api/core/logging"
+
+	"github.com/samber/do"
 )
 
 type router struct {
-	api    *api.API
-	logger *logging.Logger
-	svc    *services
-}
-
-type services struct {
-	getLatestReleaseNotes *GetLatestReleaseNotesService
+	injector *do.Injector
+	api      *api.API
+	logger   *logging.Logger
 }
 
 func NewRouter(
-	api    *api.API,
+	injector *do.Injector,
+	api *api.API,
 	logger *logging.Logger,
-	getLatestReleaseNotes *GetLatestReleaseNotesService,
 ) *router {
-	return &router {
-		api: api,
-		logger: logger,
-		svc: &services{
-			getLatestReleaseNotes: getLatestReleaseNotes,
-		},
+	return &router{
+		injector: injector,
+		api:      api,
+		logger:   logger,
 	}
 }
 
 func (r *router) Serve() {
+	getLatestReleaseNotesService := do.MustInvoke[*GetLatestReleaseNotesService](r.injector)
+
 	{
 		apiRouter := r.api.GetRouter().Group("/release-notes")
-		apiRouter.Get("/", GetLatestReleaseNotes(r.svc.getLatestReleaseNotes))
+		apiRouter.Get("/", HandleGetLatestReleaseNotes(getLatestReleaseNotesService))
 	}
 }

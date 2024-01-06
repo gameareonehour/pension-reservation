@@ -10,7 +10,7 @@ services:
     volumes:
       - ./packages/pension-reservation-api:/app
     ports:
-      - 1234:1234
+      - 8080:8080
     environment:
       DB_USERNAME: root
       DB_PASSWORD: password

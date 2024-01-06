@@ -10,6 +10,8 @@ import (
 	"pension-reservation-api/manipulation"
 	"pension-reservation-api/mod/release_note"
 	"syscall"
+
+	"github.com/samber/do"
 )
 
 var logger = logging.NewLogger(os.Stdout)
@@ -23,15 +25,16 @@ func main() {
 	}
 
 	api := api.NewApi()
+	injector := do.New()
 
-	getLatestReleaseNotesManipulation := manipulation.NewGetLatestReleaseNotes(db)
-	getLatestReleaseNotesService := release_note.NewGetLatestReleaseNotesService(getLatestReleaseNotesManipulation)
+	do.Provide(injector, func(i *do.Injector) (*release_note.GetLatestReleaseNotesService, error) {
+		m := manipulation.NewGetLatestReleaseNotes(db)
+		svc := release_note.NewGetLatestReleaseNotesService(m)
 
-	release_note.NewRouter(
-		api,
-		logger,
-		getLatestReleaseNotesService,
-	).Serve()
+		return svc, nil
+	})
+
+	release_note.NewRouter(injector, api, logger).Serve()
 
 	go func() { _ = api.GetCore().Listen(port) }()
 

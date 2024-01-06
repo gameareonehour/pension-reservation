@@ -10,7 +10,7 @@ type GetLatestReleaseNotesQueryResult struct {
 
 type GetLatestReleaseNotesQueryResultElement struct {
 	ID        int
-	Content   int
+	Text      string
 	CreatedAt string
 	UpdatedAt string
 }
