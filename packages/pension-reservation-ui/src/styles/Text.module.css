@@ -1,0 +1,24 @@
+.text {
+  font-family: var(--font-NotoSansJP);
+  font-weight: 400;
+}
+
+.text_with_size_base {
+  font-size: 14px;
+}
+
+.text_with_size_3xl {
+  font-size: 28px;
+}
+
+.text_with_bold {
+  font-weight: 700;
+}
+
+.text_with_natural {
+  color: var(--color-natural-2);
+}
+
+.text_with_black {
+  color: var(--color-gray-8-text-primary);
+}

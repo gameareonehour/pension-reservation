@@ -1,9 +1,9 @@
-import Logo from '@/components/Logo';
+import Layout from '@/components/Layout';
 
 export default function ReservationTop() {
   return (
-    <>
-      <Logo />
-    </>
+    <Layout>
+      <>a</>
+    </Layout>
   )
 }

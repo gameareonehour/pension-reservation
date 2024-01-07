@@ -1,6 +1,7 @@
-import styles from '@/styles/components/Logo.module.css'
+import styles from '@/styles/Logo.module.css'
+import type { FC } from 'react'
 
-export default function Logo() {
+const Logo: FC = () => {
   return (
     <div className={styles.logo}>
       <div className={styles.logo__annotation}>
@@ -17,3 +18,5 @@ export default function Logo() {
     </div>
   )
 }
+
+export default Logo

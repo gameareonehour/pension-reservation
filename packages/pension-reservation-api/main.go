@@ -34,6 +34,8 @@ func main() {
 	api := core.NewAPI(logger)
 	srv := server.New(injector)
 
+	api.Instance().Static("/assets", "static")
+
 	generated.RegisterHandlers(api.Router(), srv)
 
 	go func() { _ = api.Instance().Listen(port) }()

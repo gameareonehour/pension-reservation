@@ -39,7 +39,8 @@
 ├── openapi       -- OpenAPIに関連するコードを配置する
 │   ├── generated -- oapi-codegenが生成したコードを配置する
 │   └── server    -- generated と mod を仲介するためのコード
-└── tmp           -- airが使う作業用ディレクトリ
+├── tmp           -- airが使う作業用ディレクトリ
+└── static        -- フロントエンドに配信する画像等を配置する
 ```
 
 **実行順序**
