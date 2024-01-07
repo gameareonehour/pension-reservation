@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+oapi-codegen -generate 'types,fiber' -package=generated /oas/pension-reservation.yaml > openapi/generated/oapigen.go

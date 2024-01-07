@@ -1,0 +1,84 @@
+{
+  "Color": {
+    "Primary-1": {
+      "value": "#e0e7f4",
+      "type": "color"
+    },
+    "Primary-2": {
+      "value": "#6289c6",
+      "type": "color"
+    },
+    "Natural-1": {
+      "value": "#ebeadd",
+      "type": "color"
+    },
+    "Natural-2": {
+      "value": "#5a482b",
+      "type": "color"
+    },
+    "White-1": {
+      "value": "#ffffff",
+      "type": "color"
+    },
+    "Background-1": {
+      "value": "#f2f4f7",
+      "type": "color"
+    },
+    "Gray-1--Fill-Light": {
+      "value": "#f7f7f7",
+      "type": "color"
+    },
+    "Gray-2--Fill-Dark": {
+      "value": "#eeeeee",
+      "type": "color"
+    },
+    "Gray-3--Border-Light": {
+      "value": "#dbdbdb",
+      "type": "color"
+    },
+    "Gray-4--Disabled": {
+      "value": "#c9c9c9",
+      "type": "color"
+    },
+    "Gray-5--Text-Light": {
+      "value": "#acacac",
+      "type": "color"
+    },
+    "Gray-6--Text-Main": {
+      "value": "#8b8b8b",
+      "type": "color"
+    },
+    "Gray-7--Border-Dark": {
+      "value": "#646464",
+      "type": "color"
+    },
+    "Gray-8--Text-Primary": {
+      "value": "#333333",
+      "type": "color"
+    },
+    "Alert-Danger-1": {
+      "value": "#ffeaef",
+      "type": "color"
+    },
+    "Alert-Danger-2": {
+      "value": "#ff2d38",
+      "type": "color"
+    },
+    "Alert-Danger-3": {
+      "value": "#d10029",
+      "type": "color"
+    },
+    "Alert-Warning-1": {
+      "value": "#f9f9e4",
+      "type": "color"
+    },
+    "Alert-Warning-2": {
+      "value": "#d1a700",
+      "type": "color"
+    },
+    "Alert-Warning-3": {
+      "value": "#a85700",
+      "type": "color"
+    }
+  }
+}

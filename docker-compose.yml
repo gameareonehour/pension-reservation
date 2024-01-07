@@ -19,6 +19,8 @@ services:
       DB_PORT: 3306
       DB_NAME: pension_reservation
       ALLOW_ORIGINS: '["http://localhost:3000"]'
+    depends_on:
+      - db
   db:
     platform: linux/x86_64
     build:

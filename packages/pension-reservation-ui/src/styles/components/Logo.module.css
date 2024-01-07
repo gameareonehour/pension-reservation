@@ -1,0 +1,28 @@
+.logo {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo__annotation {
+  color: var(--color-natural-2);
+  font-family: var(--font-OrelegaOne);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.7px;
+}
+
+.logo__mainText {
+  color: var(--color-primary-2);
+  font-family: var(--font-OrelegaOne);
+  font-size: 72px;
+  font-weight: 400;
+  line-height: 75px;
+  letter-spacing: 3.5px;
+}
+
+.logo__subText {
+  color: var(--color-primary-2);
+  font-family: var(--font-NotoSansJP);
+  font-size: 24px;
+  font-weight: 400;
+}

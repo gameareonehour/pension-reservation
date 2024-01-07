@@ -1,0 +1,27 @@
+/**
+ * Do not edit directly
+ * Generated on Sun, 07 Jan 2024 08:47:15 GMT
+ */
+
+:root {
+  --color-primary-1: #e0e7f4;
+  --color-primary-2: #6289c6;
+  --color-natural-1: #ebeadd;
+  --color-natural-2: #5a482b;
+  --color-white-1: #ffffff;
+  --color-background-1: #f2f4f7;
+  --color-gray-1-fill-light: #f7f7f7;
+  --color-gray-2-fill-dark: #eeeeee;
+  --color-gray-3-border-light: #dbdbdb;
+  --color-gray-4-disabled: #c9c9c9;
+  --color-gray-5-text-light: #acacac;
+  --color-gray-6-text-main: #8b8b8b;
+  --color-gray-7-border-dark: #646464;
+  --color-gray-8-text-primary: #333333;
+  --color-alert-danger-1: #ffeaef;
+  --color-alert-danger-2: #ff2d38;
+  --color-alert-danger-3: #d10029;
+  --color-alert-warning-1: #f9f9e4;
+  --color-alert-warning-2: #d1a700;
+  --color-alert-warning-3: #a85700;
+}
