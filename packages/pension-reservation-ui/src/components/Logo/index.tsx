@@ -19,9 +19,7 @@ const Logo: FC = () => {
 
       <div className={styles.logo__mainText}>Marvelous Pension</div>
 
-      <div className={styles.logo__subText}>
-        天然温泉に入れるカジュアルペンション
-      </div>
+      <div className={styles.logo__subText}>天然温泉に入れるカジュアルペンション</div>
     </div>
   )
 }

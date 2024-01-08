@@ -4,16 +4,7 @@ import type { FC, ReactNode } from 'react'
 type Props = {
   children: ReactNode
   direction?: 'horizontal' | 'vertical'
-  gap?:
-    | 'none'
-    | 'xs'
-    | 'small'
-    | 'middle'
-    | 'medium'
-    | 'large'
-    | 'xl'
-    | '2xl'
-    | '3xl'
+  gap?: 'none' | 'xs' | 'small' | 'middle' | 'medium' | 'large' | 'xl' | '2xl' | '3xl'
   align?: 'start' | 'center' | 'end' | ''
   justify?: 'start' | 'center' | 'end' | 'between' | 'around'
   wrap?: boolean

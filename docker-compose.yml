@@ -37,6 +37,14 @@ services:
     environment:
       MYSQL_DATABASE: pension_reservation
       MYSQL_ROOT_PASSWORD: password
+  openapi-doc:
+    image: swaggerapi/swagger-ui
+    volumes:
+      - ./oas:/oas
+    environment:
+      SWAGGER_JSON: /oas/pension-reservation.yaml
+    ports:
+      - 3434:8080
 
 volumes:
   # database data

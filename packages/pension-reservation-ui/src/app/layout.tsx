@@ -26,13 +26,9 @@ const orelegaOne = Orelega_One<'--font-OrelegaOne'>({
 
 export const metadata: Metadata = { title: 'ペンション予約サイト' }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ja">
+    <html lang='ja'>
       <body
         className={`${notoSansJp.className} ${notoSansJp.variable} ${notoSansHebrew.variable} ${orelegaOne.variable}`}
         style={{ width: '100%' }}

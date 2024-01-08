@@ -1,10 +1,7 @@
-import {
-  GetLatestReleaseNotesData,
-  GetLatestReleaseNotesResponse,
-} from './types'
+import { GetLatestReleaseNotesData, GetLatestReleaseNotesResponse } from './types'
 
 export const responseToReleaseNotes = (
-  response: GetLatestReleaseNotesResponse,
+  response: GetLatestReleaseNotesResponse
 ): GetLatestReleaseNotesData => {
   const formatter = new Intl.DateTimeFormat('fr-CA', {
     year: 'numeric',

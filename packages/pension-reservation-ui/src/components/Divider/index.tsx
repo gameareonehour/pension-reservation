@@ -6,9 +6,7 @@ type Props = {
 }
 
 const Divider: FC<Props> = ({ margin = '0px' }) => {
-  return (
-    <div className={styles.divider} style={{ margin: `${margin} 0` }}></div>
-  )
+  return <div className={styles.divider} style={{ margin: `${margin} 0` }}></div>
 }
 
 export default Divider

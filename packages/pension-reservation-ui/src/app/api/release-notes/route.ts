@@ -1,6 +1,6 @@
+import { ReleaseNoteApi } from '@/app/(top)/_lib/api'
+import { responseToReleaseNotes } from '@/app/(top)/_lib/transfer'
 import { domain } from '@/core/api/configuration'
-import { ReleaseNoteApi } from '@/features/releaseNotes/api'
-import { responseToReleaseNotes } from '@/features/releaseNotes/transfer'
 import { NextResponse } from 'next/server'
 
 export async function GET() {

@@ -1,6 +1,6 @@
 'use client'
 
-import heroImage from '@/assets/images/hero-image.jpeg'
+// import heroImage from '@/../pu'
 import Badge from '@/components/Badge'
 import Footer from '@/components/Footer'
 import Logo from '@/components/Logo'
@@ -108,8 +108,10 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
         <Slot fullWidth direction={'vertical'}>
           <Tabs items={tabItems} selectedIndex={selectedTabIndex} />
           <Image
-            src={heroImage}
-            alt="hero image"
+            src={'/hero-image.jpeg'}
+            alt='hero image'
+            width={787}
+            height={350}
             style={{ width: '100%', height: 'auto' }}
             priority
           />
@@ -124,8 +126,7 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
 
       <div className={styles.layout__bottom_padding}></div>
       <Footer>
-        Copyright © {new Date().getFullYear()} Marvelous Pension All Rights
-        Reserved.
+        Copyright © {new Date().getFullYear()} Marvelous Pension All Rights Reserved.
       </Footer>
     </div>
   )

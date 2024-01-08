@@ -1,19 +1,16 @@
 'use client'
 
+import { GetLatestReleaseNotesData } from '@/app/(top)/_lib/types'
 import BorderBox from '@/components/BorderBox'
 import Divider from '@/components/Divider'
 import Layout from '@/components/Layout'
 import Slot from '@/components/Slot'
 import Text from '@/components/Text'
 import { fetcher } from '@/core/swr/fetcher'
-import { GetLatestReleaseNotesData } from '@/features/releaseNotes/types'
 import useSWR from 'swr'
 
 export default function ReservationTop() {
-  const { data } = useSWR<GetLatestReleaseNotesData>(
-    '/api/release-notes',
-    fetcher,
-  )
+  const { data } = useSWR<GetLatestReleaseNotesData>('/api/release-notes', fetcher)
 
   return (
     <Layout>
@@ -25,7 +22,7 @@ export default function ReservationTop() {
                 size={'4xl'}
                 family={'noto_sans_hebrew'}
                 color={'primary'}
-                lineHeight="160%"
+                lineHeight='160%'
                 light
               >
                 What’s New
@@ -36,17 +33,16 @@ export default function ReservationTop() {
           </BorderBox>
 
           <Slot direction={'vertical'} gap={'small'}>
-            {data &&
-              data.items.map((item) => {
-                return (
-                  <Text color={'natural'} key={item.id}>
-                    <Slot gap={'middle'}>
-                      <span>{item.createdAt}</span>
-                      <span>{item.text}</span>
-                    </Slot>
-                  </Text>
-                )
-              })}
+            {data?.items.map((item) => {
+              return (
+                <Text color={'natural'} key={item.id}>
+                  <Slot gap={'middle'}>
+                    <span>{item.createdAt}</span>
+                    <span>{item.text}</span>
+                  </Slot>
+                </Text>
+              )
+            })}
           </Slot>
         </Slot>
 
@@ -57,7 +53,7 @@ export default function ReservationTop() {
                 size={'4xl'}
                 family={'noto_sans_hebrew'}
                 color={'primary'}
-                lineHeight="160%"
+                lineHeight='160%'
                 light
               >
                 About Us
@@ -73,7 +69,7 @@ export default function ReservationTop() {
                 にこやか笑顔でお出迎え
               </Text>
 
-              <Divider margin="8px" />
+              <Divider margin='8px' />
 
               <Text color={'natural'}>
                 少人数で営業している当ペンションですが、スタッフ一同心掛けているのは、
@@ -87,7 +83,7 @@ export default function ReservationTop() {
                 大人数でワイワイと
               </Text>
 
-              <Divider margin="8px" />
+              <Divider margin='8px' />
 
               <Text color={'natural'}>
                 部活やサークル、仲の良いお友達同士などと、
@@ -101,7 +97,7 @@ export default function ReservationTop() {
                 観光スポットに恵まれた好立地
               </Text>
 
-              <Divider margin="8px" />
+              <Divider margin='8px' />
 
               <Text color={'natural'}>
                 ゲレンデ、テニスコート、各種レクリエーション施設へのアクセスは抜群です！

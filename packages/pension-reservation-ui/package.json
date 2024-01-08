@@ -18,15 +18,23 @@
     "swr": "^2.2.4"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@babel/core": "^7.23.7",
+    "@babel/plugin-syntax-flow": "^7.23.3",
+    "@babel/plugin-transform-react-jsx": "^7.23.4",
+    "@testing-library/dom": "^9.3.3",
+    "@testing-library/jest-dom": "^6.2.0",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.10.6",
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "openapi-typescript": "^6.7.3",
     "prettier": "^3.1.1",
     "style-dictionary": "^3.9.1",
     "token-transformer": "^0.0.33",
-    "typescript": "^5"
+    "typescript": "^5.3.3"
   }
 }
