@@ -3,7 +3,6 @@
  * Do not make direct changes to the file.
  */
 
-
 export interface paths {
   "/release-notes": {
     /**
@@ -24,18 +23,17 @@ export interface paths {
 export type webhooks = Record<string, never>;
 
 export interface components {
-  schemas: {
-  };
+  schemas: {};
   responses: {
     GetReleaseNotesResponse: {
       content: {
         "application/json": {
           items: {
-              id: number;
-              text: string;
-              created_at: string;
-              updated_at: string;
-            }[];
+            id: number;
+            text: string;
+            created_at: string;
+            updated_at: string;
+          }[];
         };
       };
     };
@@ -44,12 +42,12 @@ export interface components {
       content: {
         "application/json": {
           items: {
-              id: number;
-              name: string;
-              type: string;
-              dayfee: number;
-              image_url: string;
-            }[];
+            id: number;
+            name: string;
+            type: string;
+            dayfee: number;
+            image_url: string;
+          }[];
         };
       };
     };
@@ -65,7 +63,6 @@ export type $defs = Record<string, never>;
 export type external = Record<string, never>;
 
 export interface operations {
-
   /**
    * 最新リリースノート取得API
    * @description データベースに登録されているリリースノートのうち、新しく登録されたものを3件返す
