@@ -49,6 +49,7 @@ func main() {
 	logger.Printf("Shutting down app, waiting background process to finish")
 
 	_ = api.Instance().ShutdownWithContext(context.Background())
+	_ = injector.Shutdown()
 }
 
 func provide(db *gorm.DB, injector *do.Injector, logger *core.Logger) {

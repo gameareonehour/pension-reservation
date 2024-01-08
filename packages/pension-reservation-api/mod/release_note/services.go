@@ -1,5 +1,10 @@
 package release_note
 
+import (
+	"pension-reservation-api/openapi/generated"
+	"time"
+)
+
 type GetLatestReleaseNotesService struct {
 	query GetLatestReleaseNotesQuery
 }
@@ -10,6 +15,21 @@ func NewGetLatestReleaseNotesService(query GetLatestReleaseNotesQuery) *GetLates
 	}
 }
 
-func (h *GetLatestReleaseNotesService) GetLatestReleaseNotes() (GetLatestReleaseNotesQueryResult, error) {
-	return h.query.Run()
+func (h *GetLatestReleaseNotesService) GetLatestReleaseNotes() (*generated.GetReleaseNotesResponse, error) {
+	response := generated.GetReleaseNotesResponse{}
+	
+	notes, err := h.query.Run()
+	if err != nil {
+		return nil, err
+	}
+
+	for _, v := range notes {
+		response.Items = append(response.Items, GetReleaseNotesResponseItem{
+			Id:        v.ID,
+			Text:      v.Text,
+			CreatedAt: v.CreatedAt.Format(time.RFC3339),
+		})
+	}
+
+	return &response, nil
 }

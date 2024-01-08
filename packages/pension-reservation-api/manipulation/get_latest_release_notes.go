@@ -3,7 +3,6 @@ package manipulation
 import (
 	"pension-reservation-api/mod/release_note"
 	"pension-reservation-api/model"
-	"time"
 
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
@@ -35,8 +34,7 @@ func (m *GetLatestReleaseNotes) Run() (release_note.GetLatestReleaseNotesQueryRe
 		queryResult = append(queryResult, release_note.GetLatestReleaseNotesQueryResultInner{
 			ID: int(r.ID),
 			Text: r.Text,
-			CreatedAt: r.CreatedAt.Format(time.RFC3339),
-			UpdatedAt: r.UpdatedAt.Format(time.RFC3339),
+			CreatedAt: r.CreatedAt,
 		})
 	}
 

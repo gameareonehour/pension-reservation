@@ -79,13 +79,12 @@ components:
                       type: string
                     created_at:
                       type: string
-                    updated_at:
-                      type: string
+                      x-stoplight:
+                        id: f97tjrt3q2wke
                   required:
                     - id
                     - text
                     - created_at
-                    - updated_at
             required:
               - items
     PostVacancyRoomsSearchResponse:

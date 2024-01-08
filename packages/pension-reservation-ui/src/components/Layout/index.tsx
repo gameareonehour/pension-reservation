@@ -111,6 +111,7 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
             src={heroImage}
             alt="hero image"
             style={{ width: '100%', height: 'auto' }}
+            priority
           />
         </Slot>
 
