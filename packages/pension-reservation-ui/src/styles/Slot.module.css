@@ -22,6 +22,10 @@
   gap: 8px;
 }
 
+.slot_with_gap_middle {
+  gap: 12px;
+}
+
 .slot_with_gap_medium {
   gap: 16px;
 }

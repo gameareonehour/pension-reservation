@@ -2,7 +2,9 @@
 
 import heroImage from '@/assets/images/hero-image.jpeg'
 import Badge from '@/components/Badge'
+import Footer from '@/components/Footer'
 import Logo from '@/components/Logo'
+import Menu from '@/components/Menu'
 import Nav from '@/components/Nav'
 import Slot from '@/components/Slot'
 import Tabs from '@/components/Tabs'
@@ -13,8 +15,6 @@ import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 
 import { useMemo, type FC, type ReactNode } from 'react'
-import Footer from '../Footer'
-import Menu from '../Menu'
 
 const Layout: FC<{ children: ReactNode }> = ({ children }) => {
   const router = useRouter()
@@ -72,19 +72,19 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
         {
           name: '和室',
           onClick: () => {
-            router.push(routes.roomCatalog + '?type=japanese')
+            router.push(routes.roomCatalog + '?type=1')
           },
         },
         {
           name: '洋室',
           onClick: () => {
-            router.push(routes.roomCatalog + '?type=western')
+            router.push(routes.roomCatalog + '?type=2')
           },
         },
         {
           name: '和洋室',
           onClick: () => {
-            router.push(routes.roomCatalog + '?type=japanese-and-western')
+            router.push(routes.roomCatalog + '?type=3')
           },
         },
       ],
@@ -114,7 +114,7 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
           />
         </Slot>
 
-        <Slot gap={'large'}>
+        <Slot fullWidth gap={'large'}>
           <Menu items={menus} />
 
           {children}

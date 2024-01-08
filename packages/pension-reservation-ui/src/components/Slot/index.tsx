@@ -4,7 +4,16 @@ import type { FC, ReactNode } from 'react'
 type Props = {
   children: ReactNode
   direction?: 'horizontal' | 'vertical'
-  gap?: 'none' | 'xs' | 'small' | 'medium' | 'large' | 'xl' | '2xl' | '3xl'
+  gap?:
+    | 'none'
+    | 'xs'
+    | 'small'
+    | 'middle'
+    | 'medium'
+    | 'large'
+    | 'xl'
+    | '2xl'
+    | '3xl'
   align?: 'start' | 'center' | 'end' | ''
   justify?: 'start' | 'center' | 'end' | 'between' | 'around'
   wrap?: boolean
@@ -45,6 +54,9 @@ const Slot: FC<Props> = ({
         break
       case 'small':
         classes.push(styles.slot_with_gap_small)
+        break
+      case 'middle':
+        classes.push(styles.slot_with_gap_middle)
         break
       case 'medium':
         classes.push(styles.slot_with_gap_medium)

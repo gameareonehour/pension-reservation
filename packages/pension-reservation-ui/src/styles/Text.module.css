@@ -1,5 +1,4 @@
 .text {
-  font-family: var(--font-NotoSansJP);
   font-weight: 400;
 }
 
@@ -11,8 +10,26 @@
   font-size: 28px;
 }
 
+.text_with_size_4xl {
+  font-size: 32px;
+}
+
+.text_with_noto_sans_jp {
+  font-family: var(--font-NotoSansJP);
+}
+
+.text_with_noto_sans_hebrew {
+  font-family: var(--font-NotoSansHebrew);
+}
+
+/* noto_sans_jp */
+
 .text_with_bold {
   font-weight: 700;
+}
+
+.text_with_light {
+  font-weight: 300;
 }
 
 .text_with_natural {
@@ -21,4 +38,8 @@
 
 .text_with_black {
   color: var(--color-gray-8-text-primary);
+}
+
+.text_with_primary {
+  color: var(--color-primary-2);
 }
