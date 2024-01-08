@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier '**/*.ts' '**/*.tsx' '**/**/*.ts' '**/**/*.tsx' '**/**/**/*.ts' '**/**/**/*.tsx' --write",
+    "format": "prettier src/app '**/*.ts' '**/*.tsx' '**/**/*.ts' '**/**/*.tsx' --write",
     "codegen": "openapi-typescript ../../oas/pension-reservation.yaml --output src/core/api/openapi.ts && prettier src/core/api/openapi.ts --write",
     "style-dictionary": "style-dictionary build --config style-dictionary.json"
   },
