@@ -4,88 +4,88 @@
  */
 
 export interface paths {
-  "/release-notes": {
+  '/release-notes': {
     /**
      * 最新リリースノート取得API
      * @description データベースに登録されているリリースノートのうち、新しく登録されたものを3件返す
      */
-    get: operations["get-release-notes"];
-  };
-  "/vacancy-rooms/search": {
+    get: operations['get-release-notes']
+  }
+  '/vacancy-rooms/search': {
     /**
      * 空室検索API
      * @description 指定された日付にて、予約が行われていない部屋の一覧を返す
      */
-    post: operations["post-vacancy-rooms-search"];
-  };
+    post: operations['post-vacancy-rooms-search']
+  }
 }
 
-export type webhooks = Record<string, never>;
+export type webhooks = Record<string, never>
 
 export interface components {
-  schemas: {};
+  schemas: {}
   responses: {
     GetReleaseNotesResponse: {
       content: {
-        "application/json": {
+        'application/json': {
           items: {
-            id: number;
-            text: string;
-            created_at: string;
-            updated_at: string;
-          }[];
-        };
-      };
-    };
+            id: number
+            text: string
+            created_at: string
+            updated_at: string
+          }[]
+        }
+      }
+    }
     /** @description Example response */
     PostVacancyRoomsSearchResponse: {
       content: {
-        "application/json": {
+        'application/json': {
           items: {
-            id: number;
-            name: string;
-            type: string;
-            dayfee: number;
-            image_url: string;
-          }[];
-        };
-      };
-    };
-  };
-  parameters: never;
-  requestBodies: never;
-  headers: never;
-  pathItems: never;
+            id: number
+            name: string
+            type: string
+            dayfee: number
+            image_url: string
+          }[]
+        }
+      }
+    }
+  }
+  parameters: never
+  requestBodies: never
+  headers: never
+  pathItems: never
 }
 
-export type $defs = Record<string, never>;
+export type $defs = Record<string, never>
 
-export type external = Record<string, never>;
+export type external = Record<string, never>
 
 export interface operations {
   /**
    * 最新リリースノート取得API
    * @description データベースに登録されているリリースノートのうち、新しく登録されたものを3件返す
    */
-  "get-release-notes": {
+  'get-release-notes': {
     responses: {
-      200: components["responses"]["GetReleaseNotesResponse"];
-    };
-  };
+      200: components['responses']['GetReleaseNotesResponse']
+    }
+  }
   /**
    * 空室検索API
    * @description 指定された日付にて、予約が行われていない部屋の一覧を返す
    */
-  "post-vacancy-rooms-search": {
+  'post-vacancy-rooms-search': {
     requestBody?: {
       content: {
-        "application/json": {
-          reservation_date?: string;
-        };
-      };
-    };
+        'application/json': {
+          reservation_date?: string
+        }
+      }
+    }
     responses: {
-      200: components["responses"]["PostVacancyRoomsSearchResponse"];
-    };
-  };
+      200: components['responses']['PostVacancyRoomsSearchResponse']
+    }
+  }
 }

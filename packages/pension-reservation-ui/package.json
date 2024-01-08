@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "codegen": "openapi-typescript ../../oas/pension-reservation.yaml --output api/openapi.ts"
+    "prettier": "prettier '**/*.ts' '**/*.tsx' '**/**/*.ts' '**/**/*.tsx' --write",
+    "codegen": "openapi-typescript ../../oas/pension-reservation.yaml --output api/openapi.ts",
+    "style-dictionary": "style-dictionary build --config style-dictionary.json"
   },
   "dependencies": {
     "next": "14.0.4",

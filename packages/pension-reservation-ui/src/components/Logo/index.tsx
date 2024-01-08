@@ -1,15 +1,15 @@
-"use client";
+'use client'
 
-import styles from "@/styles/Logo.module.css";
-import { useRouter } from "next/navigation";
-import type { FC } from "react";
+import styles from '@/styles/Logo.module.css'
+import { useRouter } from 'next/navigation'
+import type { FC } from 'react'
 
 const Logo: FC = () => {
-  const router = useRouter();
+  const router = useRouter()
 
   const navigateToReservationTop = () => {
-    router.push("/");
-  };
+    router.push('/')
+  }
 
   return (
     <div className={styles.logo} onClick={() => navigateToReservationTop()}>
@@ -23,7 +23,7 @@ const Logo: FC = () => {
         天然温泉に入れるカジュアルペンション
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Logo;
+export default Logo
