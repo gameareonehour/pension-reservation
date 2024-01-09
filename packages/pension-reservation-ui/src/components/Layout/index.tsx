@@ -1,6 +1,5 @@
 'use client'
 
-// import heroImage from '@/../pu'
 import Badge from '@/components/Badge'
 import Footer from '@/components/Footer'
 import Logo from '@/components/Logo'
@@ -16,7 +15,12 @@ import { usePathname, useRouter } from 'next/navigation'
 
 import { useMemo, type FC, type ReactNode } from 'react'
 
-const Layout: FC<{ children: ReactNode }> = ({ children }) => {
+type Props = {
+  children: ReactNode
+  heroImageURI?: string
+}
+
+const Layout: FC<Props> = ({ children, heroImageURI }) => {
   const router = useRouter()
   const pathname = usePathname()
 
@@ -107,14 +111,16 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
 
         <Slot fullWidth direction={'vertical'}>
           <Tabs items={tabItems} selectedIndex={selectedTabIndex} />
-          <Image
-            src={'/hero-image.jpeg'}
-            alt='hero image'
-            width={787}
-            height={350}
-            style={{ width: '100%', height: 'auto' }}
-            priority
-          />
+          {heroImageURI && (
+            <Image
+              src={heroImageURI}
+              alt='hero image'
+              width={787}
+              height={350}
+              style={{ width: '100%', height: 'auto' }}
+              priority
+            />
+          )}
         </Slot>
 
         <Slot fullWidth gap={'large'}>

@@ -1,7 +1,7 @@
 import styles from '@/styles/BorderBox.module.css'
-import { FC, ReactNode } from 'react'
+import { FC } from 'react'
 
-const BorderBox: FC<{ children: ReactNode }> = ({ children }) => {
+const BorderBox: FC<{ children: ReactElement }> = ({ children }) => {
   return <div className={styles.border_box}>{children}</div>
 }
 

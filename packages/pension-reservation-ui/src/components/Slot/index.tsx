@@ -1,8 +1,8 @@
 import styles from '@/styles/Slot.module.css'
-import type { FC, ReactNode } from 'react'
+import type { FC } from 'react'
 
 type Props = {
-  children: ReactNode
+  children: ReactElement
   direction?: 'horizontal' | 'vertical'
   gap?: 'none' | 'xs' | 'small' | 'middle' | 'medium' | 'large' | 'xl' | '2xl' | '3xl'
   align?: 'start' | 'center' | 'end' | ''

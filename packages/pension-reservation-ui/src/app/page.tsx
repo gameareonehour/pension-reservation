@@ -13,7 +13,7 @@ export default function ReservationTop() {
   const { data } = useSWR<GetLatestReleaseNotesData>('/api/release-notes', fetcher)
 
   return (
-    <Layout>
+    <Layout heroImageURI='/hero-image.jpeg'>
       <Slot fullWidth direction={'vertical'} gap={'large'}>
         <Slot fullWidth direction={'vertical'} gap={'middle'}>
           <BorderBox>

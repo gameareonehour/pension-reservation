@@ -1,7 +1,7 @@
 import styles from '@/styles/Badge.module.css'
-import { FC, ReactNode } from 'react'
+import { FC } from 'react'
 
-const Badge: FC<{ children: ReactNode }> = ({ children }) => {
+const Badge: FC<{ children: ReactElement }> = ({ children }) => {
   return <div className={styles.badge}>{children}</div>
 }
 

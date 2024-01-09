@@ -1,7 +1,7 @@
 import styles from '@/styles/Footer.module.css'
-import { FC, ReactNode } from 'react'
+import { FC } from 'react'
 
-const Footer: FC<{ children: ReactNode }> = ({ children }) => {
+const Footer: FC<{ children: ReactElement }> = ({ children }) => {
   return <div className={styles.footer}>{children}</div>
 }
 

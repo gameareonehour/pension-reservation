@@ -58,6 +58,9 @@ func ConnectToDatabase() (*gorm.DB, error) {
 func Migrate(db *gorm.DB) error {
 	models := []interface{}{
 		&model.ReleaseNote{},
+		&model.RoomType{},
+		&model.RoomImage{},
+		&model.Room{},
 	}
 
 	for _, m := range models {
@@ -73,5 +76,8 @@ func Migrate(db *gorm.DB) error {
 func DropTables(db *gorm.DB) error {
 	return db.Migrator().DropTable(
 		&model.ReleaseNote{},
+		&model.RoomType{},
+		&model.RoomImage{},
+		&model.Room{},
 	)
 }
