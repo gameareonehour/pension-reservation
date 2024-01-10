@@ -7,19 +7,19 @@ import (
 	"gorm.io/gorm"
 )
 
-type CatalogManipulation struct {
+type catalogManipulation struct {
 	db *gorm.DB
 }
 
-var _ catalog.CatalogQuery = (*CatalogManipulation)(nil)
+var _ catalog.CatalogQuery = (*catalogManipulation)(nil)
 
-func NewCatalogManipulation(db *gorm.DB) *CatalogManipulation {
-	return &CatalogManipulation{
+func NewCatalogManipulation(db *gorm.DB) *catalogManipulation {
+	return &catalogManipulation{
 		db: db,
 	}
 }
 
-func (m *CatalogManipulation) GetRooms(roomType *int) (catalog.GetRoomsQueryResult, error) {
+func (m *catalogManipulation) GetRooms(roomType *int) (catalog.GetRoomsQueryResult, error) {
 	query := catalog_manipulation.NewGetRooms(m.db)
 
 	return query.Run(roomType)

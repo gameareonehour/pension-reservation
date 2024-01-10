@@ -7,20 +7,20 @@ import (
 	"gorm.io/gorm"
 )
 
-type ReleaseNoteManipulation struct {
+type releaseNoteManipulation struct {
 	db *gorm.DB
 }
 
-var _ release_note.ReleaseNoteQuery = (*ReleaseNoteManipulation)(nil)
+var _ release_note.ReleaseNoteQuery = (*releaseNoteManipulation)(nil)
 
-func (m *ReleaseNoteManipulation) GetLatestReleaseNotes() (release_note.GetLatestReleaseNotesQueryResult, error) {
+func (m *releaseNoteManipulation) GetLatestReleaseNotes() (release_note.GetLatestReleaseNotesQueryResult, error) {
 	query := release_note_manipulation.NewGetLatestReleaseNotes(m.db)
 
 	return query.Run()
 }
 
-func NewReleaseNoteManipulation(db *gorm.DB) *ReleaseNoteManipulation {
-	return &ReleaseNoteManipulation{
+func NewReleaseNoteManipulation(db *gorm.DB) *releaseNoteManipulation {
+	return &releaseNoteManipulation{
 		db: db,
 	}
 }
