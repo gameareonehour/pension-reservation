@@ -1,7 +1,7 @@
 package manipulation
 
 import (
-	release_note_manipulation "pension-reservation-api/manipulation/pkg/release_note"
+	release_note_manipulation "pension-reservation-api/manipulation/mod/release_note"
 	"pension-reservation-api/mod/release_note"
 
 	"gorm.io/gorm"

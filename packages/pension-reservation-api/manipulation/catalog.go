@@ -1,7 +1,7 @@
 package manipulation
 
 import (
-	catalog_manipulation "pension-reservation-api/manipulation/pkg/catalog"
+	catalog_manipulation "pension-reservation-api/manipulation/mod/catalog"
 	"pension-reservation-api/mod/catalog"
 
 	"gorm.io/gorm"
