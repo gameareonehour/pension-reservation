@@ -2,10 +2,14 @@ module pension-reservation-api
 
 go 1.21.4
 
-require gorm.io/gorm v1.25.2-0.20230530020048-26663ab9bf55
+require (
+	github.com/oapi-codegen/runtime v1.1.1
+	gorm.io/gorm v1.25.2-0.20230530020048-26663ab9bf55
+)
 
 require (
 	github.com/andybalholm/brotli v1.0.5 // indirect
+	github.com/apapsch/go-jsonmerge/v2 v2.0.0 // indirect
 	github.com/go-sql-driver/mysql v1.7.0 // indirect
 	github.com/google/uuid v1.5.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect

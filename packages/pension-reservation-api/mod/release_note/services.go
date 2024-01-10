@@ -6,10 +6,10 @@ import (
 )
 
 type GetLatestReleaseNotesService struct {
-	query GetLatestReleaseNotesQuery
+	query ReleaseNoteQuery
 }
 
-func NewGetLatestReleaseNotesService(query GetLatestReleaseNotesQuery) *GetLatestReleaseNotesService {
+func NewGetLatestReleaseNotesService(query ReleaseNoteQuery) *GetLatestReleaseNotesService {
 	return &GetLatestReleaseNotesService{
 		query: query,
 	}
@@ -18,7 +18,7 @@ func NewGetLatestReleaseNotesService(query GetLatestReleaseNotesQuery) *GetLates
 func (h *GetLatestReleaseNotesService) GetLatestReleaseNotes() (*generated.GetReleaseNotesResponse, error) {
 	response := generated.GetReleaseNotesResponse{}
 	
-	notes, err := h.query.Run()
+	notes, err := h.query.GetLatestReleaseNotes()
 	if err != nil {
 		return nil, err
 	}

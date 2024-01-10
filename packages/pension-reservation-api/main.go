@@ -53,8 +53,8 @@ func main() {
 func provide(db *gorm.DB, injector *do.Injector, logger *core.Logger) {
 	// provide service instances.
 	do.Provide(injector, func(i *do.Injector) (*release_note.GetLatestReleaseNotesService, error) {
-		m := manipulation.NewGetLatestReleaseNotes(db)
-		svc := release_note.NewGetLatestReleaseNotesService(m)
+		q := manipulation.NewReleaseNoteManipulation(db)
+		svc := release_note.NewGetLatestReleaseNotesService(q)
 
 		return svc, nil
 	})

@@ -27,6 +27,10 @@ func (s *server) GetReleaseNotes(ctx *fiber.Ctx) error {
 	return controller.GetLatestReleaseNotes(service)(ctx)
 }
 
+func (s *server) GetCatalog(c *fiber.Ctx, params generated.GetCatalogParams) error {
+	return nil
+}
+
 func (s *server) PostVacancyRoomsSearch(c *fiber.Ctx) error {
 	return nil
 }

@@ -3,17 +3,17 @@ x-stoplight:
   id: hofrdkpa7nd57
 info:
   title: pension-reservation
-  version: '1.0'
+  version: "1.0"
   contact:
     name: ゲームは一日一時間だよ
-    email: 'https://example.com'
+    email: "https://example.com"
     url: example@example.jp
   license:
     name: Proprietary License
-    url: 'https://example.com/my-api-license'
+    url: "https://example.com/my-api-license"
   description: ペンション予約サイトに必要なAPIを提供します
 servers:
-  - url: 'http://localhost:8080/api/v1'
+  - url: "http://localhost:8080/api/v1"
 paths:
   /release-notes:
     get:
@@ -21,8 +21,8 @@ paths:
       tags:
         - release-notes
       responses:
-        '200':
-          $ref: '#/components/responses/GetReleaseNotesResponse'
+        "200":
+          $ref: "#/components/responses/GetReleaseNotesResponse"
       operationId: get-release-notes
       x-stoplight:
         id: avr4y22750gsx
@@ -34,8 +34,8 @@ paths:
       summary: 空室検索API
       operationId: post-vacancy-rooms-search
       responses:
-        '200':
-          $ref: '#/components/responses/PostVacancyRoomsSearchResponse'
+        "200":
+          $ref: "#/components/responses/PostVacancyRoomsSearchResponse"
       x-stoplight:
         id: pe8mfpsoxqnoh
       description: 指定された日付にて、予約が行われていない部屋の一覧を返す
@@ -51,11 +51,29 @@ paths:
                     id: me2x4wqwxhskq
       tags:
         - reservation
+  /catalog:
+    get:
+      summary: カタログAPI
+      tags:
+        - catalog
+      responses:
+        "200":
+          $ref: "#/components/responses/GetCatalogResponse"
+      operationId: get-catalog
+      x-stoplight:
+        id: 2zgww44cxzmr5
+      description: システムが提供する部屋の情報を返す
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: type
+          description: 部屋タイプ
 components:
   schemas: {}
   responses:
     GetReleaseNotesResponse:
-      description: ''
+      description: ""
       content:
         application/json:
           schema:
@@ -125,8 +143,45 @@ components:
                     - image_url
             required:
               - items
+    GetCatalogResponse:
+      description: ""
+      content:
+        application/json:
+          schema:
+            type: array
+            x-examples:
+              Example 1:
+                - id: 0
+                  name: ""
+                  type: ""
+                  dayfee: 0
+                  image: ""
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+                type:
+                  type: string
+                dayfee:
+                  type: integer
+                image_url:
+                  type: string
+                  x-stoplight:
+                    id: epr75pmr9livu
+              required:
+                - id
+                - name
+                - type
+                - dayfee
+                - image_url
+  requestBodies: {}
 x-internal: true
 tags:
+  - name: catalog
+    description: カタログ コンテキスト
   - name: release-notes
     description: リリースノート コンテキスト
   - name: reservation

@@ -223,7 +223,71 @@ func (s *seeder) associateRoomTypes() error {
 		roomImages := []model.RoomImage{
 			{
 				RoomID: r.ID,
-				ImageURL: "",
+				ImageURL: "/room_01_01.jpg",
+			},
+			{
+				RoomID: r.ID,
+				ImageURL: "/room_01_02.jpg",
+			},
+			{
+				RoomID: r.ID,
+				ImageURL: "/room_01_03.jpg",
+			},
+			{
+				RoomID: r.ID,
+				ImageURL: "/room_01_04.jpg",
+			},
+		}
+
+		err := s.db.Create(roomImages).Error
+		if err != nil {
+			return err
+		}
+	}
+
+	for _, r := range westernRooms {
+		roomImages := []model.RoomImage{
+			{
+				RoomID: r.ID,
+				ImageURL: "/room_02_01.jpg",
+			},
+			{
+				RoomID: r.ID,
+				ImageURL: "/room_02_02.jpg",
+			},
+			{
+				RoomID: r.ID,
+				ImageURL: "/room_02_03.jpg",
+			},
+			{
+				RoomID: r.ID,
+				ImageURL: "/room_02_04.jpg",
+			},
+		}
+
+		err := s.db.Create(roomImages).Error
+		if err != nil {
+			return err
+		}
+	}
+
+	for _, r := range japaneseWesternRooms {
+		roomImages := []model.RoomImage{
+			{
+				RoomID: r.ID,
+				ImageURL: "/room_03_01.jpg",
+			},
+			{
+				RoomID: r.ID,
+				ImageURL: "/room_03_02.jpg",
+			},
+			{
+				RoomID: r.ID,
+				ImageURL: "/room_03_03.jpg",
+			},
+			{
+				RoomID: r.ID,
+				ImageURL: "/room_03_04.jpg",
 			},
 		}
 
