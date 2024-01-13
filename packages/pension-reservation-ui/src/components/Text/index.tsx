@@ -1,8 +1,8 @@
 import styles from '@/styles/Text.module.css'
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 
 type Props = {
-  children: ReactElement
+  children: ReactNode
   color?: 'natural' | 'black' | 'primary'
   size?: 'base' | '3xl' | '4xl'
   family?: 'noto_sans_jp' | 'noto_sans_hebrew'

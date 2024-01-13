@@ -1,7 +1,7 @@
 import styles from '@/styles/Nav.module.css'
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 
-const Nav: FC<{ children: ReactElement }> = ({ children }) => {
+const Nav: FC<{ children: ReactNode }> = ({ children }) => {
   return <div className={styles.nav}>{children}</div>
 }
 

@@ -1,5 +1,5 @@
 import styles from '@/styles/Tabs.module.css'
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 
 type Props = {
   items: Array<{
@@ -21,7 +21,7 @@ const Tabs: FC<Props> = ({ items, selectedIndex }) => {
   return <div className={styles.tabs}>{inner}</div>
 }
 
-const Tab: FC<{ children: ReactElement; isSelected?: boolean }> = ({
+const Tab: FC<{ children: ReactNode; isSelected?: boolean }> = ({
   children,
   isSelected: selected,
 }) => {
