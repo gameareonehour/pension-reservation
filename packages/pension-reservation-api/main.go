@@ -6,6 +6,7 @@ import (
 	"os/signal"
 	"pension-reservation-api/core"
 	"pension-reservation-api/manipulation"
+	"pension-reservation-api/mod/catalog"
 	"pension-reservation-api/mod/release_note"
 	"pension-reservation-api/openapi/generated"
 	"pension-reservation-api/openapi/server"
@@ -64,5 +65,13 @@ func provide(db *gorm.DB, injector *do.Injector, logger *core.Logger) {
 		controller := release_note.NewController()
 
 		return controller, nil
+	})
+
+	do.Provide(injector, func(i *do.Injector) (*catalog.Controller, error) {
+		query := manipulation.NewCatalogManipulation(db)
+		svc := catalog.NewService(query)
+		ctr := catalog.NewController(svc)
+
+		return ctr, nil
 	})
 }

@@ -4,6 +4,9 @@ import "gorm.io/gorm"
 
 type RoomType struct {
 	gorm.Model
-	// 部屋タイプ名称
-	Name string
+	Name string `gorm:"column:name"` // 部屋タイプ名称
+}
+
+func (RoomType) TableName() string {
+	return "room_types"
 }

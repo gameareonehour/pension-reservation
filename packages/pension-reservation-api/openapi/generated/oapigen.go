@@ -12,12 +12,14 @@ import (
 )
 
 // GetCatalogResponse defines model for GetCatalogResponse.
-type GetCatalogResponse = []struct {
-	Dayfee   int    `json:"dayfee"`
-	Id       int    `json:"id"`
-	ImageUrl string `json:"image_url"`
-	Name     string `json:"name"`
-	Type     string `json:"type"`
+type GetCatalogResponse struct {
+	Items []struct {
+		Dayfee   int    `json:"dayfee"`
+		Id       int    `json:"id"`
+		ImageUrl string `json:"image_url"`
+		Name     string `json:"name"`
+		Type     string `json:"type"`
+	} `json:"items"`
 }
 
 // GetReleaseNotesResponse defines model for GetReleaseNotesResponse.

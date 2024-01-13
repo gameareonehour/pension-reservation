@@ -123,7 +123,7 @@ func (s *seeder) createRooms() error {
 			Amenity: "テレビ、エアコン、冷蔵庫、部屋着、ドライヤー、シャンプー、リンス",
 			Dayfee: 9000,
 			Capacity: 4,
-			TypeID: UIntPtr(roomTypeJapanese),
+			TypeID: roomTypeJapanese,
 		},
 		{
 			Name: "ゆとりの和室",
@@ -131,7 +131,7 @@ func (s *seeder) createRooms() error {
 			Amenity: "テレビ、エアコン、冷蔵庫、部屋着、ドライヤー、シャンプー、リンス",
 			Dayfee: 12000,
 			Capacity: 6,
-			TypeID: UIntPtr(roomTypeJapanese),
+			TypeID: roomTypeJapanese,
 		},
 		{
 			Name: "ゆとりの和室",
@@ -139,7 +139,7 @@ func (s *seeder) createRooms() error {
 			Amenity: "テレビ、エアコン、冷蔵庫、部屋着、ドライヤー、シャンプー、リンス",
 			Dayfee: 21000,
 			Capacity: 8,
-			TypeID: UIntPtr(roomTypeJapanese),
+			TypeID: roomTypeJapanese,
 		},
 		{
 			Name: "落ち着きのある洋室",
@@ -147,7 +147,7 @@ func (s *seeder) createRooms() error {
 			Amenity: "テレビ、エアコン、冷蔵庫、部屋着",
 			Dayfee: 8000,
 			Capacity: 3,
-			TypeID: UIntPtr(roomTypeWestern),
+			TypeID: roomTypeWestern,
 		},
 		{
 			Name: "落ち着きのある洋室",
@@ -155,7 +155,7 @@ func (s *seeder) createRooms() error {
 			Amenity: "テレビ、エアコン、冷蔵庫、部屋着",
 			Dayfee: 10000,
 			Capacity: 4,
-			TypeID: UIntPtr(roomTypeWestern),
+			TypeID: roomTypeWestern,
 		},
 		{
 			Name: "落ち着きのある洋室",
@@ -163,7 +163,7 @@ func (s *seeder) createRooms() error {
 			Amenity: "テレビ、エアコン、冷蔵庫、部屋着",
 			Dayfee: 15000,
 			Capacity: 6,
-			TypeID: UIntPtr(roomTypeWestern),
+			TypeID: roomTypeWestern,
 		},
 		{
 			Name: "みんなで和洋室",
@@ -171,7 +171,7 @@ func (s *seeder) createRooms() error {
 			Amenity: "テレビ、エアコン、冷蔵庫、部屋着",
 			Dayfee: 10000,
 			Capacity: 6,
-			TypeID: UIntPtr(roomTypeJapaneseWestern),
+			TypeID: roomTypeJapaneseWestern,
 		},
 		{
 			Name: "みんなで和洋室",
@@ -179,7 +179,7 @@ func (s *seeder) createRooms() error {
 			Amenity: "テレビ、エアコン、冷蔵庫、部屋着",
 			Dayfee: 15000,
 			Capacity: 8,
-			TypeID: UIntPtr(roomTypeJapaneseWestern),
+			TypeID: roomTypeJapaneseWestern,
 		},
 		{
 			Name: "みんなで和洋室",
@@ -187,7 +187,7 @@ func (s *seeder) createRooms() error {
 			Amenity: "テレビ、エアコン、冷蔵庫、部屋着",
 			Dayfee: 32000,
 			Capacity: 12,
-			TypeID: UIntPtr(roomTypeJapaneseWestern),
+			TypeID: roomTypeJapaneseWestern,
 		},
 	}
 
@@ -204,17 +204,17 @@ func (s *seeder) associateRoomTypes() error {
 	westernRooms := []*model.Room{}
 	japaneseWesternRooms := []*model.Room{}
 
-	err := s.db.Where(&model.Room{TypeID: UIntPtr(roomTypeJapanese)}).Find(&japaneseRooms).Error
+	err := s.db.Where(&model.Room{TypeID: roomTypeJapanese}).Find(&japaneseRooms).Error
 	if err != nil {
 		return err
 	}
 
-	err = s.db.Where(&model.Room{TypeID: UIntPtr(roomTypeWestern)}).Find(&westernRooms).Error
+	err = s.db.Where(&model.Room{TypeID: roomTypeWestern}).Find(&westernRooms).Error
 	if err != nil {
 		return err
 	}
 
-	err = s.db.Where(&model.Room{TypeID: UIntPtr(roomTypeJapaneseWestern)}).Find(&japaneseWesternRooms).Error
+	err = s.db.Where(&model.Room{TypeID: roomTypeJapaneseWestern}).Find(&japaneseWesternRooms).Error
 	if err != nil {
 		return err
 	}

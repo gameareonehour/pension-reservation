@@ -1,7 +1,7 @@
 package manipulation
 
 import (
-	catalog_manipulation "pension-reservation-api/manipulation/mod/catalog"
+	"pension-reservation-api/manipulation/mod/catalog_manipulation"
 	"pension-reservation-api/mod/catalog"
 
 	"gorm.io/gorm"
@@ -19,7 +19,7 @@ func NewCatalogManipulation(db *gorm.DB) *catalogManipulation {
 	}
 }
 
-func (m *catalogManipulation) GetRooms(roomType *int) (catalog.GetRoomsQueryResult, error) {
+func (m *catalogManipulation) GetRooms(roomType *int) (*catalog.GetRoomsQueryResult, error) {
 	query := catalog_manipulation.NewGetRooms(m.db)
 
 	return query.Run(roomType)

@@ -148,35 +148,39 @@ components:
       content:
         application/json:
           schema:
-            type: array
+            type: object
             x-examples:
               Example 1:
-                - id: 0
-                  name: ""
-                  type: ""
-                  dayfee: 0
-                  image: ""
-            items:
-              type: object
-              properties:
-                id:
-                  type: integer
-                name:
-                  type: string
-                type:
-                  type: string
-                dayfee:
-                  type: integer
-                image_url:
-                  type: string
-                  x-stoplight:
-                    id: epr75pmr9livu
-              required:
-                - id
-                - name
-                - type
-                - dayfee
-                - image_url
+                items:
+                  - id: 0
+                    name: string
+                    type: string
+                    dayfee: 0
+                    image_url: string
+            properties:
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    type:
+                      type: string
+                    dayfee:
+                      type: integer
+                    image_url:
+                      type: string
+                  required:
+                    - id
+                    - name
+                    - type
+                    - dayfee
+                    - image_url
+            required:
+              - items
   requestBodies: {}
 x-internal: true
 tags:

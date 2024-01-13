@@ -15,10 +15,10 @@ func NewGetLatestReleaseNotesService(query ReleaseNoteQuery) *GetLatestReleaseNo
 	}
 }
 
-func (h *GetLatestReleaseNotesService) GetLatestReleaseNotes() (*generated.GetReleaseNotesResponse, error) {
+func (s *GetLatestReleaseNotesService) GetLatestReleaseNotes() (*generated.GetReleaseNotesResponse, error) {
 	response := generated.GetReleaseNotesResponse{}
 	
-	notes, err := h.query.GetLatestReleaseNotes()
+	notes, err := s.query.GetLatestReleaseNotes()
 	if err != nil {
 		return nil, err
 	}
