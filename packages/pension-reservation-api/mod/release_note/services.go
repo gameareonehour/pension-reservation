@@ -5,20 +5,20 @@ import (
 	"time"
 )
 
-type GetLatestReleaseNotesService struct {
-	query GetLatestReleaseNotesQuery
+type service struct {
+	query ReleaseNoteQuery
 }
 
-func NewGetLatestReleaseNotesService(query GetLatestReleaseNotesQuery) *GetLatestReleaseNotesService {
-	return &GetLatestReleaseNotesService{
+func NewService(query ReleaseNoteQuery) *service {
+	return &service{
 		query: query,
 	}
 }
 
-func (h *GetLatestReleaseNotesService) GetLatestReleaseNotes() (*generated.GetReleaseNotesResponse, error) {
+func (s *service) GetLatestReleaseNotes() (*generated.GetReleaseNotesResponse, error) {
 	response := generated.GetReleaseNotesResponse{}
 	
-	notes, err := h.query.Run()
+	notes, err := s.query.GetLatestReleaseNotes()
 	if err != nil {
 		return nil, err
 	}

@@ -13,7 +13,7 @@
   cursor: pointer;
 }
 
-.tabs .tab:last-child {
+.tabs span:last-of-type .tab {
   border-right: 1px solid var(--color-gray-3-border-light);
 }
 
@@ -22,11 +22,11 @@
   font-size: 16px;
   font-weight: 700;
   line-height: 150%;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .tab__text_with_selected {
-  color: var(--color-primary-2); 
+  color: var(--color-primary-2);
 }
 
 .tab__text:hover {

@@ -1,4 +1,4 @@
-package manipulation
+package release_note_manipulation
 
 import (
 	"pension-reservation-api/mod/release_note"
@@ -11,8 +11,6 @@ import (
 type GetLatestReleaseNotes struct {
 	db *gorm.DB
 }
-
-var _ release_note.GetLatestReleaseNotesQuery = (*GetLatestReleaseNotes)(nil)
 
 func NewGetLatestReleaseNotes(db *gorm.DB) *GetLatestReleaseNotes {
 	return &GetLatestReleaseNotes{
@@ -32,8 +30,8 @@ func (m *GetLatestReleaseNotes) Run() (release_note.GetLatestReleaseNotesQueryRe
 
 	for _, r := range rs {
 		queryResult = append(queryResult, release_note.GetLatestReleaseNotesQueryResultInner{
-			ID: int(r.ID),
-			Text: r.Text,
+			ID:        int(r.ID),
+			Text:      r.Text,
 			CreatedAt: r.CreatedAt,
 		})
 	}

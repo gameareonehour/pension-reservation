@@ -18,6 +18,13 @@ export interface paths {
      */
     post: operations['post-vacancy-rooms-search']
   }
+  '/catalog': {
+    /**
+     * カタログAPI
+     * @description システムが提供する部屋の情報を返す
+     */
+    get: operations['get-catalog']
+  }
 }
 
 export type webhooks = Record<string, never>
@@ -50,9 +57,22 @@ export interface components {
         }
       }
     }
+    GetCatalogResponse: {
+      content: {
+        'application/json': {
+          items: {
+            id: number
+            name: string
+            type: string
+            dayfee: number
+            image_url: string
+          }[]
+        }
+      }
+    }
   }
   parameters: never
-  requestBodies: never
+  requestBodies: {}
   headers: never
   pathItems: never
 }
@@ -85,6 +105,21 @@ export interface operations {
     }
     responses: {
       200: components['responses']['PostVacancyRoomsSearchResponse']
+    }
+  }
+  /**
+   * カタログAPI
+   * @description システムが提供する部屋の情報を返す
+   */
+  'get-catalog': {
+    parameters: {
+      query?: {
+        /** @description 部屋タイプ */
+        type?: string
+      }
+    }
+    responses: {
+      200: components['responses']['GetCatalogResponse']
     }
   }
 }

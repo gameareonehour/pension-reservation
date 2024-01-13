@@ -1,5 +1,6 @@
 export const routes = {
   reservationTop: '/',
-  roomCatalog: '/rooms/catalog',
+  roomCatalog: '/catalog',
+  roomCatalogDetails: '/catalog/',
   vacancyRoomSearch: '/rooms/search-vacancy',
 }

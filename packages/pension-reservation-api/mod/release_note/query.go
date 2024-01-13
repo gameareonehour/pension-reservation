@@ -2,8 +2,8 @@ package release_note
 
 import "time"
 
-type GetLatestReleaseNotesQuery interface {
-	Run() (GetLatestReleaseNotesQueryResult, error)
+type ReleaseNoteQuery interface {
+	GetLatestReleaseNotes() (GetLatestReleaseNotesQueryResult, error)
 }
 
 type GetLatestReleaseNotesQueryResult []GetLatestReleaseNotesQueryResultInner

@@ -1,6 +1,7 @@
 package server
 
 import (
+	"pension-reservation-api/mod/catalog"
 	"pension-reservation-api/mod/release_note"
 	"pension-reservation-api/openapi/generated"
 
@@ -21,12 +22,17 @@ func New(injector *do.Injector) *server {
 }
 
 func (s *server) GetReleaseNotes(ctx *fiber.Ctx) error {
-	controller := do.MustInvoke[*release_note.Controller](s.injector)
-	service := do.MustInvoke[*release_note.GetLatestReleaseNotesService](s.injector)
+	ctr := do.MustInvoke[*release_note.Controller](s.injector)
 
-	return controller.GetLatestReleaseNotes(service)(ctx)
+	return ctr.GetLatestReleaseNotes()(ctx)
 }
 
-func (s *server) PostVacancyRoomsSearch(c *fiber.Ctx) error {
+func (s *server) GetCatalog(ctx *fiber.Ctx, params generated.GetCatalogParams) error {
+	ctr := do.MustInvoke[*catalog.Controller](s.injector)
+
+	return ctr.GetCatalog(params)(ctx)
+}
+
+func (s *server) PostVacancyRoomsSearch(ctx *fiber.Ctx) error {
 	return nil
 }

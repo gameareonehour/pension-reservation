@@ -4,8 +4,23 @@
 package generated
 
 import (
+	"fmt"
+	"net/url"
+
 	"github.com/gofiber/fiber/v2"
+	"github.com/oapi-codegen/runtime"
 )
+
+// GetCatalogResponse defines model for GetCatalogResponse.
+type GetCatalogResponse struct {
+	Items []struct {
+		Dayfee   int    `json:"dayfee"`
+		Id       int    `json:"id"`
+		ImageUrl string `json:"image_url"`
+		Name     string `json:"name"`
+		Type     string `json:"type"`
+	} `json:"items"`
+}
 
 // GetReleaseNotesResponse defines model for GetReleaseNotesResponse.
 type GetReleaseNotesResponse struct {
@@ -27,6 +42,12 @@ type PostVacancyRoomsSearchResponse struct {
 	} `json:"items"`
 }
 
+// GetCatalogParams defines parameters for GetCatalog.
+type GetCatalogParams struct {
+	// Type 部屋タイプ
+	Type *string `form:"type,omitempty" json:"type,omitempty"`
+}
+
 // PostVacancyRoomsSearchJSONBody defines parameters for PostVacancyRoomsSearch.
 type PostVacancyRoomsSearchJSONBody struct {
 	ReservationDate *string `json:"reservation_date,omitempty"`
@@ -37,6 +58,9 @@ type PostVacancyRoomsSearchJSONRequestBody PostVacancyRoomsSearchJSONBody
 
 // ServerInterface represents all server handlers.
 type ServerInterface interface {
+	// カタログAPI
+	// (GET /catalog)
+	GetCatalog(c *fiber.Ctx, params GetCatalogParams) error
 	// 最新リリースノート取得API
 	// (GET /release-notes)
 	GetReleaseNotes(c *fiber.Ctx) error
@@ -51,6 +75,30 @@ type ServerInterfaceWrapper struct {
 }
 
 type MiddlewareFunc fiber.Handler
+
+// GetCatalog operation middleware
+func (siw *ServerInterfaceWrapper) GetCatalog(c *fiber.Ctx) error {
+
+	var err error
+
+	// Parameter object where we will unmarshal all parameters from the context
+	var params GetCatalogParams
+
+	var query url.Values
+	query, err = url.ParseQuery(string(c.Request().URI().QueryString()))
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+	}
+
+	// ------------- Optional query parameter "type" -------------
+
+	err = runtime.BindQueryParameter("form", true, false, "type", query, &params.Type)
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter type: %w", err).Error())
+	}
+
+	return siw.Handler.GetCatalog(c, params)
+}
 
 // GetReleaseNotes operation middleware
 func (siw *ServerInterfaceWrapper) GetReleaseNotes(c *fiber.Ctx) error {
@@ -84,6 +132,8 @@ func RegisterHandlersWithOptions(router fiber.Router, si ServerInterface, option
 	for _, m := range options.Middlewares {
 		router.Use(m)
 	}
+
+	router.Get(options.BaseURL+"/catalog", wrapper.GetCatalog)
 
 	router.Get(options.BaseURL+"/release-notes", wrapper.GetReleaseNotes)
 

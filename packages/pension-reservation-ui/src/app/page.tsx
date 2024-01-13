@@ -7,13 +7,45 @@ import Layout from '@/components/Layout'
 import Slot from '@/components/Slot'
 import Text from '@/components/Text'
 import { fetcher } from '@/core/swr/fetcher'
+import Image from 'next/image'
+import { useMemo } from 'react'
 import useSWR from 'swr'
 
 export default function ReservationTop() {
-  const { data } = useSWR<GetLatestReleaseNotesData>('/api/release-notes', fetcher)
+  const { data, isLoading } = useSWR<GetLatestReleaseNotesData>('/api/release-notes', fetcher)
+
+  const releaseNotes = useMemo(() => {
+    if (isLoading) {
+      return (
+        <Image
+          src={'/loading-skeleton-top-release-note.svg'}
+          alt='hero image'
+          width={1440}
+          height={350}
+          style={{ width: '100%', height: 'auto' }}
+          priority
+        />
+      )
+    }
+
+    return (
+      <>
+        {data!.items.map((item) => {
+          return (
+            <Text color={'natural'} key={item.id}>
+              <Slot gap={'middle'}>
+                <span>{item.createdAt}</span>
+                <span>{item.text}</span>
+              </Slot>
+            </Text>
+          )
+        })}
+      </>
+    )
+  }, [data, isLoading])
 
   return (
-    <Layout>
+    <Layout heroImageURI='/hero-image.jpeg'>
       <Slot fullWidth direction={'vertical'} gap={'large'}>
         <Slot fullWidth direction={'vertical'} gap={'middle'}>
           <BorderBox>
@@ -33,16 +65,7 @@ export default function ReservationTop() {
           </BorderBox>
 
           <Slot direction={'vertical'} gap={'small'}>
-            {data?.items.map((item) => {
-              return (
-                <Text color={'natural'} key={item.id}>
-                  <Slot gap={'middle'}>
-                    <span>{item.createdAt}</span>
-                    <span>{item.text}</span>
-                  </Slot>
-                </Text>
-              )
-            })}
+            {releaseNotes}
           </Slot>
         </Slot>
 
