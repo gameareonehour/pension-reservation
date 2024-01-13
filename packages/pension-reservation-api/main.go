@@ -14,7 +14,6 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/samber/do"
-	"gorm.io/gorm"
 )
 
 const port = ":8080"
@@ -30,7 +29,21 @@ func main() {
 
 	injector := do.New()
 
-	provide(db, injector, logger)
+	do.Provide(injector, func(i *do.Injector) (*release_note.Controller, error) {
+		query := manipulation.NewReleaseNoteManipulation(db)
+		svc := release_note.NewService(query)
+		ctr := release_note.NewController(svc)
+
+		return ctr, nil
+	})
+
+	do.Provide(injector, func(i *do.Injector) (*catalog.Controller, error) {
+		query := manipulation.NewCatalogManipulation(db)
+		svc := catalog.NewService(query)
+		ctr := catalog.NewController(svc)
+
+		return ctr, nil
+	})
 
 	api := core.NewAPI(logger)
 	srv := server.New(injector)
@@ -49,29 +62,4 @@ func main() {
 
 	_ = api.Instance().ShutdownWithContext(context.Background())
 	_ = injector.Shutdown()
-}
-
-func provide(db *gorm.DB, injector *do.Injector, logger *core.Logger) {
-	// provide service instances.
-	do.Provide(injector, func(i *do.Injector) (*release_note.GetLatestReleaseNotesService, error) {
-		q := manipulation.NewReleaseNoteManipulation(db)
-		svc := release_note.NewGetLatestReleaseNotesService(q)
-
-		return svc, nil
-	})
-
-	// provide controller instances.
-	do.Provide(injector, func(i *do.Injector) (*release_note.Controller, error) {
-		controller := release_note.NewController()
-
-		return controller, nil
-	})
-
-	do.Provide(injector, func(i *do.Injector) (*catalog.Controller, error) {
-		query := manipulation.NewCatalogManipulation(db)
-		svc := catalog.NewService(query)
-		ctr := catalog.NewController(svc)
-
-		return ctr, nil
-	})
 }

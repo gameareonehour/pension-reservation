@@ -4,15 +4,19 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-type Controller struct{}
-
-func NewController() *Controller {
-	return &Controller{}
+type Controller struct{
+	svc *service
 }
 
-func (c *Controller) GetLatestReleaseNotes(service *GetLatestReleaseNotesService) fiber.Handler {
+func NewController(svc *service) *Controller {
+	return &Controller{
+		svc: svc,
+	}
+}
+
+func (c *Controller) GetLatestReleaseNotes() fiber.Handler {
 	return func(ctx *fiber.Ctx) error {
-		response, err := service.GetLatestReleaseNotes()
+		response, err := c.svc.GetLatestReleaseNotes()
 		if err != nil {
 			return err
 		}

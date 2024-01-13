@@ -22,10 +22,9 @@ func New(injector *do.Injector) *server {
 }
 
 func (s *server) GetReleaseNotes(ctx *fiber.Ctx) error {
-	controller := do.MustInvoke[*release_note.Controller](s.injector)
-	service := do.MustInvoke[*release_note.GetLatestReleaseNotesService](s.injector)
+	ctr := do.MustInvoke[*release_note.Controller](s.injector)
 
-	return controller.GetLatestReleaseNotes(service)(ctx)
+	return ctr.GetLatestReleaseNotes()(ctx)
 }
 
 func (s *server) GetCatalog(ctx *fiber.Ctx, params generated.GetCatalogParams) error {
