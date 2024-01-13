@@ -17,17 +17,67 @@ import { routes } from '@/core/routes'
 import { fetcher } from '@/core/swr/fetcher'
 import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { useMemo } from 'react'
 import useSWR from 'swr'
 
 export default function RoomCatalog() {
   const router = useRouter()
   const query = useSearchParams()
   const type = query.get('type') ?? ''
-  const { data } = useSWR<GetCatalogData>(`/api/catalog?type=${type}`, fetcher)
+  const { data, isLoading } = useSWR<GetCatalogData>(`/api/catalog?type=${type}`, fetcher)
 
-  const navigateToCatalogDetails = (roomId: number): void => {
-    router.push(routes.roomCatalogDetails + roomId)
-  }
+  const rooms = useMemo(() => {
+    const navigateToCatalogDetails = (roomId: number): void => {
+      router.push(routes.roomCatalogDetails + roomId)
+    }
+
+    if (isLoading) {
+      return (
+        <Image
+          src={'/loading-skeleton-catalog-rooms.svg'}
+          alt='hero image'
+          width={1440}
+          height={350}
+          style={{ width: '100%', height: 'auto' }}
+          priority
+        />
+      )
+    }
+
+    return (
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableColumn width='230px'>お部屋名称</TableColumn>
+            <TableColumn>お部屋タイプ</TableColumn>
+            <TableColumn>
+              一泊料金
+              <br />
+              （部屋単位）
+            </TableColumn>
+            <TableColumn colSpan={2}>お部屋イメージ</TableColumn>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data?.items.map((item, index) => {
+            return (
+              <TableRow key={index}>
+                <TableCell>{item.name}</TableCell>
+                <TableCell>{item.type}</TableCell>
+                <TableCell>{item.dayfee}</TableCell>
+                <TableCell>
+                  <Image src={item.imageUrl} alt='room image' width={320} height={240} priority />
+                </TableCell>
+                <TableCell>
+                  <Button onClick={() => navigateToCatalogDetails(item.id)}>詳細</Button>
+                </TableCell>
+              </TableRow>
+            )
+          })}
+        </TableBody>
+      </Table>
+    )
+  }, [data?.items, isLoading, router])
 
   return (
     <Layout>
@@ -47,44 +97,7 @@ export default function RoomCatalog() {
               和室・洋室・和洋室と、ご希望に沿った形でお部屋をお選び頂けます。
             </Text>
           </Slot>
-
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableColumn width='230px'>お部屋名称</TableColumn>
-                <TableColumn>お部屋タイプ</TableColumn>
-                <TableColumn>
-                  一泊料金
-                  <br />
-                  （部屋単位）
-                </TableColumn>
-                <TableColumn colSpan={2}>お部屋イメージ</TableColumn>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data?.items.map((item, index) => {
-                return (
-                  <TableRow key={index}>
-                    <TableCell>{item.name}</TableCell>
-                    <TableCell>{item.type}</TableCell>
-                    <TableCell>{item.dayfee}</TableCell>
-                    <TableCell>
-                      <Image
-                        src={item.imageUrl}
-                        alt='room image'
-                        width={320}
-                        height={240}
-                        priority
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <Button onClick={() => navigateToCatalogDetails(item.id)}>詳細</Button>
-                    </TableCell>
-                  </TableRow>
-                )
-              })}
-            </TableBody>
-          </Table>
+          {rooms}
         </Slot>
       </Slot>
     </Layout>

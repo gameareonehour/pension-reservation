@@ -33,6 +33,12 @@ const Layout: FC<Props> = ({ children, heroImageURI }) => {
       case routes.vacancyRoomSearch:
         return 2
       default:
+        // カタログ詳細画面の場合
+        const regexp = new RegExp(`${routes.roomCatalogDetails}\\d`)
+        if (regexp.test(pathname)) {
+          return 1
+        }
+
         return undefined
     }
   }, [pathname])
