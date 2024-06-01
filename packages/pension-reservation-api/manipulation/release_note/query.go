@@ -12,7 +12,7 @@ type releaseNoteQueryImpl struct {
 
 var _ release_note.ReleaseNoteQuery = (*releaseNoteQueryImpl)(nil)
 
-func NewReleaseNoteQuery(db *gorm.DB) *releaseNoteQueryImpl {
+func NewQuery(db *gorm.DB) *releaseNoteQueryImpl {
 	return &releaseNoteQueryImpl{
 		db: db,
 	}

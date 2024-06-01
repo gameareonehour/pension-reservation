@@ -38,8 +38,8 @@ require (
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/pkg/errors v0.9.1
-	github.com/samber/do v1.6.0
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
+	go.uber.org/dig v1.17.1
 	golang.org/x/sys v0.15.0 // indirect
 	gorm.io/driver/mysql v1.5.2
 )

@@ -6,29 +6,41 @@ import (
 	"pension-reservation-api/openapi/generated"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/samber/do"
+	"go.uber.org/dig"
 )
 
 type server struct {
-	injector *do.Injector
+	container *dig.Container
 }
 
 var _ generated.ServerInterface = (*server)(nil)
 
-func New(injector *do.Injector) *server {
+func New(container *dig.Container) *server {
 	return &server{
-		injector: injector,
+		container: container,
 	}
 }
 
 func (s *server) GetReleaseNotes(ctx *fiber.Ctx) error {
-	ctr := do.MustInvoke[*release_note.Controller](s.injector)
+	var ctr *release_note.Controller
+
+	if err := s.container.Invoke(func(o *release_note.Controller) {
+		ctr = o
+	}); err != nil {
+		return err
+	}
 
 	return ctr.GetLatestReleaseNotes()(ctx)
 }
 
 func (s *server) GetCatalog(ctx *fiber.Ctx, params generated.GetCatalogParams) error {
-	ctr := do.MustInvoke[*catalog.Controller](s.injector)
+	var ctr *catalog.Controller
+
+	if err := s.container.Invoke(func(o *catalog.Controller) {
+		ctr = o
+	}); err != nil {
+		return err
+	}
 
 	return ctr.GetCatalog(params)(ctx)
 }

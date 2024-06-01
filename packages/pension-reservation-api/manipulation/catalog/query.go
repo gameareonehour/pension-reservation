@@ -12,7 +12,7 @@ type catalogQueryImpl struct {
 
 var _ catalog.CatalogQuery = (*catalogQueryImpl)(nil)
 
-func NewCatalogQuery(db *gorm.DB) *catalogQueryImpl {
+func NewQuery(db *gorm.DB) *catalogQueryImpl {
 	return &catalogQueryImpl{
 		db: db,
 	}

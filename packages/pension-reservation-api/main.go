@@ -14,7 +14,8 @@ import (
 	"syscall"
 
 	"github.com/pkg/errors"
-	"github.com/samber/do"
+	"go.uber.org/dig"
+	// "github.com/samber/do"
 )
 
 const port = ":8080"
@@ -28,26 +29,28 @@ func main() {
 		os.Exit(1)
 	}
 
-	injector := do.New()
+	container := dig.New()
 
-	do.Provide(injector, func(i *do.Injector) (*release_note.Controller, error) {
-		query := release_note_manipulation.NewReleaseNoteQuery(db)
+	// provide release note controller.
+	container.Provide(func () *release_note.Controller {
+		query := release_note_manipulation.NewQuery(db)
 		svc := release_note.NewService(query)
 		ctr := release_note.NewController(svc)
 
-		return ctr, nil
+		return ctr
 	})
 
-	do.Provide(injector, func(i *do.Injector) (*catalog.Controller, error) {
-		query := catalog_manipulation.NewCatalogQuery(db)
+	// provide catalog controller.
+	container.Provide(func () *catalog.Controller {
+		query := catalog_manipulation.NewQuery(db)
 		svc := catalog.NewService(query)
 		ctr := catalog.NewController(svc)
 
-		return ctr, nil
+		return ctr
 	})
 
 	api := core.NewAPI(logger)
-	srv := server.New(injector)
+	srv := server.New(container)
 
 	generated.RegisterHandlers(api.Router(), srv)
 
@@ -62,5 +65,4 @@ func main() {
 	logger.Printf("Shutting down app, waiting background process to finish")
 
 	_ = api.Instance().ShutdownWithContext(context.Background())
-	_ = injector.Shutdown()
 }
