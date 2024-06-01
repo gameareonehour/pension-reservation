@@ -1,0 +1,45 @@
+.text {
+  font-weight: 400;
+}
+
+.text_with_size_base {
+  font-size: 14px;
+}
+
+.text_with_size_3xl {
+  font-size: 28px;
+}
+
+.text_with_size_4xl {
+  font-size: 32px;
+}
+
+.text_with_noto_sans_jp {
+  font-family: var(--font-NotoSansJP);
+}
+
+.text_with_noto_sans_hebrew {
+  font-family: var(--font-NotoSansHebrew);
+}
+
+/* noto_sans_jp */
+
+.text_with_bold {
+  font-weight: 700;
+}
+
+.text_with_light {
+  font-weight: 300;
+}
+
+.text_with_natural {
+  color: var(--color-natural-2);
+}
+
+.text_with_black {
+  color: var(--color-gray-8-text-primary);
+}
+
+.text_with_primary {
+  color: var(--color-primary-2);
+}

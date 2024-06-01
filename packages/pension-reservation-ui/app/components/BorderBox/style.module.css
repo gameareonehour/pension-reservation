@@ -1,0 +1,5 @@
+.border_box {
+  border: 1px solid var(--color-gray-3-border-light);
+  padding: 12px;
+  width: 100%;
+}

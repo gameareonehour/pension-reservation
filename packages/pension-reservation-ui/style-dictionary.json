@@ -3,7 +3,7 @@
   "platforms": {
     "css": {
       "transformGroup": "css",
-      "buildPath": "./src/app/",
+      "buildPath": "./app/css",
       "files": [
         {
           "format": "css/variables",
