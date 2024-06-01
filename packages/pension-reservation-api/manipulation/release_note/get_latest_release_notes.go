@@ -1,4 +1,4 @@
-package release_note_manipulation
+package release_note
 
 import (
 	"pension-reservation-api/mod/release_note"

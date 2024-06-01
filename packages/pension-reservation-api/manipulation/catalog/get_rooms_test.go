@@ -1,8 +1,9 @@
-package catalog_manipulation_test
+package catalog_test
 
 import (
 	"pension-reservation-api/core"
-	"pension-reservation-api/manipulation/mod/catalog_manipulation"
+	catalog_manipulation "pension-reservation-api/manipulation/catalog"
+
 	"pension-reservation-api/mod/catalog"
 	"pension-reservation-api/model"
 	"testing"

@@ -5,7 +5,8 @@ import (
 	"os"
 	"os/signal"
 	"pension-reservation-api/core"
-	"pension-reservation-api/manipulation"
+	catalog_manipulation "pension-reservation-api/manipulation/catalog"
+	release_note_manipulation "pension-reservation-api/manipulation/release_note"
 	"pension-reservation-api/mod/catalog"
 	"pension-reservation-api/mod/release_note"
 	"pension-reservation-api/openapi/generated"
@@ -30,7 +31,7 @@ func main() {
 	injector := do.New()
 
 	do.Provide(injector, func(i *do.Injector) (*release_note.Controller, error) {
-		query := manipulation.NewReleaseNoteManipulation(db)
+		query := release_note_manipulation.NewReleaseNoteQuery(db)
 		svc := release_note.NewService(query)
 		ctr := release_note.NewController(svc)
 
@@ -38,7 +39,7 @@ func main() {
 	})
 
 	do.Provide(injector, func(i *do.Injector) (*catalog.Controller, error) {
-		query := manipulation.NewCatalogManipulation(db)
+		query := catalog_manipulation.NewCatalogQuery(db)
 		svc := catalog.NewService(query)
 		ctr := catalog.NewController(svc)
 

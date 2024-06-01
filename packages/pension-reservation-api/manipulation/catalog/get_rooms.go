@@ -1,4 +1,4 @@
-package catalog_manipulation
+package catalog
 
 import (
 	"pension-reservation-api/mod/catalog"
