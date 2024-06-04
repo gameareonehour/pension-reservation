@@ -6,20 +6,18 @@ import (
 	"gorm.io/gorm"
 )
 
-type releaseNoteQueryImpl struct {
+type queryImpl struct {
 	db *gorm.DB
 }
 
-var _ release_note.ReleaseNoteQuery = (*releaseNoteQueryImpl)(nil)
+var _ release_note.ReleaseNoteQuery = (*queryImpl)(nil)
 
-func NewQuery(db *gorm.DB) *releaseNoteQueryImpl {
-	return &releaseNoteQueryImpl{
+func NewQuery(db *gorm.DB) *queryImpl {
+	return &queryImpl{
 		db: db,
 	}
 }
 
-func (q *releaseNoteQueryImpl) GetLatestReleaseNotes() (release_note.GetLatestReleaseNotesQueryResult, error) {
-	query := NewGetLatestReleaseNotes(q.db)
-
-	return query.Run()
+func (q *queryImpl) GetLatestReleaseNotes() (release_note.GetLatestReleaseNotesQueryResult, error) {
+	return q.findLatestReleaseNotes()
 }

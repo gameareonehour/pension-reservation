@@ -5,21 +5,10 @@ import (
 	"pension-reservation-api/model"
 
 	"github.com/pkg/errors"
-	"gorm.io/gorm"
 )
 
-type GetRooms struct {
-	db *gorm.DB
-}
-
-func NewGetRooms(db *gorm.DB) *GetRooms {
-	return &GetRooms{
-		db: db,
-	}
-}
-
-func (m *GetRooms) Run(roomType *int) (*catalog.GetRoomsQueryResult, error) {
-	rooms, err := m.find(roomType)
+func (q *queryImpl) findRooms(roomType *int) (*catalog.GetRoomsQueryResult, error) {
+	rooms, err := q.findByRoomType(roomType)
 	if err != nil {
 		return nil, err
 	}
@@ -39,11 +28,11 @@ func (m *GetRooms) Run(roomType *int) (*catalog.GetRoomsQueryResult, error) {
 	return &queryResult, nil
 }
 
-func (m *GetRooms) find(roomType *int) ([]*model.Room, error) {
+func (q *queryImpl) findByRoomType(roomType *int) ([]*model.Room, error) {
 	rooms := []*model.Room{}
 	var err error
 
-	tx := m.db.
+	tx := q.db.
 		Preload("Type").
 		Preload("Images").
 		Order("type_id").

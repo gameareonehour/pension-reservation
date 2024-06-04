@@ -1,5 +1,6 @@
-import { redirect } from '@remix-run/node'
-import { useLocation } from '@remix-run/react'
+// import { redirect } from '@remix-run/node'
+
+import { useLocation, useNavigate } from '@remix-run/react'
 import { useMemo, type FC, type ReactNode } from 'react'
 import Badge from '~/components/Badge'
 import Footer from '~/components/Footer'
@@ -19,6 +20,7 @@ type Props = {
 
 const Layout: FC<Props> = ({ children, heroImageURI }) => {
   const location = useLocation()
+  const navigate = useNavigate()
 
   const selectedTabIndex = useMemo((): number | undefined => {
     switch (location.pathname) {
@@ -43,19 +45,19 @@ const Layout: FC<Props> = ({ children, heroImageURI }) => {
     {
       name: 'トップ',
       onClick: () => {
-        redirect(routes.top)
+        navigate(routes.top)
       },
     },
     {
       name: 'お部屋紹介',
       onClick: () => {
-        redirect(routes.catalog)
+        navigate(routes.catalog)
       },
     },
     {
       name: 'ご予約',
       onClick: () => {
-        redirect(routes.vacancyRoomSearch)
+        navigate(routes.vacancyRoomSearch)
       },
     },
   ]
@@ -67,7 +69,7 @@ const Layout: FC<Props> = ({ children, heroImageURI }) => {
         {
           name: '空室検索',
           onClick: () => {
-            redirect(routes.vacancyRoomSearch)
+            navigate(routes.vacancyRoomSearch)
           },
         },
       ],
@@ -78,19 +80,20 @@ const Layout: FC<Props> = ({ children, heroImageURI }) => {
         {
           name: '和室',
           onClick: () => {
-            redirect(routes.catalog + '?type=1')
+            console.log('呼ばれたど')
+            navigate(routes.catalog + '?type=1')
           },
         },
         {
           name: '洋室',
           onClick: () => {
-            redirect(routes.catalog + '?type=2')
+            navigate(routes.catalog + '?type=2')
           },
         },
         {
           name: '和洋室',
           onClick: () => {
-            redirect(routes.catalog + '?type=3')
+            navigate(routes.catalog + '?type=3')
           },
         },
       ],

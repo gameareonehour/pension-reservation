@@ -5,25 +5,14 @@ import (
 	"pension-reservation-api/model"
 
 	"github.com/pkg/errors"
-	"gorm.io/gorm"
 )
 
-type GetLatestReleaseNotes struct {
-	db *gorm.DB
-}
-
-func NewGetLatestReleaseNotes(db *gorm.DB) *GetLatestReleaseNotes {
-	return &GetLatestReleaseNotes{
-		db: db,
-	}
-}
-
-func (m *GetLatestReleaseNotes) Run() (release_note.GetLatestReleaseNotesQueryResult, error) {
+func (q *queryImpl) findLatestReleaseNotes() (release_note.GetLatestReleaseNotesQueryResult, error) {
 	rs := []*model.ReleaseNote{}
 	limit := 3
 	queryResult := release_note.GetLatestReleaseNotesQueryResult{}
 
-	err := m.db.Model(&model.ReleaseNote{}).Limit(limit).Find(&rs).Error
+	err := q.db.Model(&model.ReleaseNote{}).Limit(limit).Find(&rs).Error
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}

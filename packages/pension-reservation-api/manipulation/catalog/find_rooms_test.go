@@ -3,7 +3,6 @@ package catalog_test
 import (
 	"pension-reservation-api/core"
 	catalog_manipulation "pension-reservation-api/manipulation/catalog"
-
 	"pension-reservation-api/mod/catalog"
 	"pension-reservation-api/model"
 	"testing"
@@ -12,7 +11,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func TestCatalog_GetRooms(t *testing.T) {
+func TestCatalog_FindRooms(t *testing.T) {
 	setup := func() *gorm.DB {
 		db, err := core.ConnectToInMemoryDatabase()
 		if err != nil {
@@ -65,8 +64,8 @@ func TestCatalog_GetRooms(t *testing.T) {
 			},
 		}
 
-		query := catalog_manipulation.NewGetRooms(db)
-		rooms, err := query.Run(nil)
+		query := catalog_manipulation.NewQuery(db)
+		rooms, err := query.GetRooms(nil)
 
 		assert.Nil(t, err)
 		assert.Equal(t, expected, rooms)
@@ -94,9 +93,9 @@ func TestCatalog_GetRooms(t *testing.T) {
 			},
 		}
 
-		query := catalog_manipulation.NewGetRooms(db)
+		query := catalog_manipulation.NewQuery(db)
 		typeId := 1
-		rooms, err := query.Run(&typeId)
+		rooms, err := query.GetRooms(&typeId)
 
 		assert.Nil(t, err)
 		assert.Equal(t, expected, rooms)
