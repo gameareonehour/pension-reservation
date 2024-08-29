@@ -6,20 +6,18 @@ import (
 	"gorm.io/gorm"
 )
 
-type catalogQueryImpl struct {
+type queryImpl struct {
 	db *gorm.DB
 }
 
-var _ catalog.CatalogQuery = (*catalogQueryImpl)(nil)
+var _ catalog.CatalogQuery = (*queryImpl)(nil)
 
-func NewQuery(db *gorm.DB) *catalogQueryImpl {
-	return &catalogQueryImpl{
+func NewQuery(db *gorm.DB) *queryImpl {
+	return &queryImpl{
 		db: db,
 	}
 }
 
-func (q *catalogQueryImpl) GetRooms(roomType *int) (*catalog.GetRoomsQueryResult, error) {
-	query := NewGetRooms(q.db)
-
-	return query.Run(roomType)
+func (q *queryImpl) GetRooms(roomType *int) (*catalog.GetRoomsQueryResult, error) {
+	return q.findRooms(roomType)
 }
